@@ -1,6 +1,6 @@
 <?php
 /****************************
- *    Konfiguracija
+ *      Konfiguracija
  *
  */
 
@@ -9,8 +9,6 @@ $db_server='localhost';
 $db_baza='kwizz';
 $db_username='kwizz';
 $db_password='password1234';
-
-
 
 /****************
 Kraj konfiguracije

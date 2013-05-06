@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;	
+}
+
+img {
+	border: none;	
+}
+
+/* Klase */
+
+.floatL {
+	float: left;
+}
+
+.floatR {
+	float: right;
+}
+
+/* Divovi */
+
+#wrapper {
+	width: 960px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#loginBar {
+	width: 100%;
+	height: 30px;
+}
+
+#loginBar a {
+	margin-left: 20px;
+}
