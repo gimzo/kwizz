@@ -20,7 +20,7 @@ Dragons below this line:
 // Database connect
 function db_connect() {
 	global $db_server, $db_baza, $db_username, $db_password, $mysqli;
-	$mysqli=new mysqli("$db_server", "$db_username", "$db_password", "$db_baza");
+	$mysqli=mysqli_connect("$db_server", "$db_username", "$db_password", "$db_baza");
 
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " .mysqli_connect_errno());
@@ -30,6 +30,6 @@ function db_connect() {
 // Database disconnect
 function db_disconnect() {
 	global $mysqli;
-	$mysqli->close();
+	close($mysqli);
 }
 ?>
