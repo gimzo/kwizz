@@ -30,6 +30,6 @@ function db_connect() {
 // Database disconnect
 function db_disconnect() {
 	global $mysqli;
-	close($mysqli);
+	mysqli_close($mysqli);
 }
 ?>
