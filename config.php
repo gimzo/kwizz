@@ -16,4 +16,18 @@ Dragons below this line:
 **********************/
 
 // Ovdje dodajemo globalne funkcije kad nam budu trebale.
+
+// Database connect
+function db_connect() {
+	$db_handler=mysqli_connect("$db_server", "$db_username", "$db_password", "$db_baza");
+
+	if (mysqli_connect_errno($db_handler)) {
+		die("Failed to connect to MySQL: " .mysqli_connect_errno());
+	}
+}
+
+// Database disconnect
+function db_disconnect() {
+	mysqli_close($db_handler);
+}
 ?>
