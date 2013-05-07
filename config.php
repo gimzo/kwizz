@@ -19,15 +19,17 @@ Dragons below this line:
 
 // Database connect
 function db_connect() {
-	$db_handler=mysqli_connect("$db_server", "$db_username", "$db_password", "$db_baza");
+	global $db_server, $db_baza, $db_username, $db_password, $mysqli;
+	$mysqli=new mysqli("$db_server", "$db_username", "$db_password", "$db_baza");
 
-	if (mysqli_connect_errno($db_handler)) {
+	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " .mysqli_connect_errno());
 	}
 }
 
 // Database disconnect
 function db_disconnect() {
-	mysqli_close($db_handler);
+	global $mysqli;
+	$mysqli->close();
 }
 ?>
