@@ -1,3 +1,31 @@
+<?php
+	if ($_SERVER['REQUEST_METHOD']==='POST') {
+		$nickname=$_POST['nickname'];
+		$password=$_POST['password'];
+		$country=$_POST['country'];
+	
+		// Provjera da li su sva polja puna
+		if (!empty($nickname) && !empty($password) && $country!='default') {
+			include_once 'config.php';
+
+			db_connect();
+	
+			$result=mysqli_query($mysqli, "SELECT id_korisnik FROM korisnik WHERE nadimak_korisnik = '$nickname';");
+			// Provjera da li postoji vec korisnik u bazi s istim nickname-om
+			if (mysqli_num_rows($result)==0) {
+				mysqli_query($mysqli, "INSERT INTO korisnik (nadimak_korisnik, password_korisnik, drzava_korisnik) VALUES ('$nickname', md5('$password'), '$country');");
+				echo "Registration successful. Click <a href=\"index.php\">here</a> to login.";
+			} else {
+				echo "Nickname: '$nickname' is already in use. Please choose another nickname.";
+			}
+					
+			db_disconnect();
+		} else {
+			echo "Please fill all fields to continue registration.";
+		}
+	}
+?>
+
 <!DOCTYPE html> 
 <html>
 <head>
@@ -8,17 +36,20 @@
 	<form action="register.php" method="post" accept-charset="UTF-8">
 	<fieldset >
 		<legend>Register</legend>
-		<p>Desired Nickname:
+		<p>
+			<label for"nickname">Desired Nickname:</label>
 			<input type="text" name="nickname" maxlength="20" />
 		</p>
-		<p>Password:
+		<p>
+			<label for="password">Password:</label>
 			<input type="password" name="password" maxlength="45" />
 		</p>
-		<p>Country:
+		<p>
+			<label for="country">Country:</label>
  			<select name="country">
- 				<option value="default">Select</option>
+ 				<option value="default" disabled="disabled" selected="selected">Select</option>
  				<option value="af">Afghanistan</option>
-				<option value="ax">åland Islands</option>
+				<option value="ax">Aaland Islands</option>
 				<option value="al">Albania</option>
 				<option value="dz">Algeria</option>
 				<option value="as">American Samoa</option>
@@ -71,10 +102,10 @@
 				<option value="cd">Congo, The Democratic Republic Of The</option>
 				<option value="ck">Cook Islands</option>
 				<option value="cr">Costa Rica</option>
-				<option value="ci">CÔte D'Ivoire</option>
+				<option value="ci">Cote D'Ivoire</option>
 				<option value="hr">Croatia</option>
 				<option value="cu">Cuba</option>
-				<option value="cw">CuraÇao</option>
+				<option value="cw">Curacao</option>
 				<option value="cy">Cyprus</option>
 				<option value="cz">Czech Republic</option>
 				<option value="dk">Denmark</option>
@@ -197,11 +228,11 @@
 				<option value="pt">Portugal</option>
 				<option value="pr">Puerto Rico</option>
 				<option value="qa">Qatar</option>
-				<option value="re">RÉunion</option>
+				<option value="re">Reunion</option>
 				<option value="ro">Romania</option>
 				<option value="ru">Russian Federation</option>
 				<option value="rw">Rwanda</option>
-				<option value="bl">Saint BarthÉlemy</option>
+				<option value="bl">Saint Barthelemy</option>
 				<option value="sh">Saint Helena, Ascension And Tristan Da Cunha</option>
 				<option value="kn">Saint Kitts And Nevis</option>
 				<option value="lc">Saint Lucia</option>
@@ -271,32 +302,5 @@
 		<input type="submit" name="Submit" value="Submit" />
 	</fieldset>
 	</form>
-	<?php
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-			$nickname=$_POST['nickname'];
-			$password=$_POST['password'];
-			$country=$_POST['country'];
-	
-			// Provjera da li su sva polja puna
-			if (!empty($nickname) && !empty($password) && $country!='default') {
-				include_once "config.php";
-	
-				db_connect();
-	
-				$result=mysqli_query($mysqli, "SELECT id_korisnik FROM korisnik WHERE nadimak_korisnik = '$nickname';");
-				if (mysqli_num_rows($result)==0) {
-					mysqli_query($mysqli, "INSERT INTO korisnik (nadimak_korisnik, password_korisnik, drzava_korisnik) VALUES ('$nickname', md5('$password'), '$country');");
-					echo "Registration successful. Click <a href=\"index.php\">here</a> to login.";
-				} else {
-					echo "Nickname: '$nickname' is already in use. Please choose another nickname.";
-				}
-					
-				db_disconnect();
-			} else {
-				echo "Please fill all fields to continue registration.";
-			}
-		}
-	?>
 </body>
 </html>
