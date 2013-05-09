@@ -1,19 +1,18 @@
 <!DOCTYPE html> 
 <html>
-<html>
 <head>
-   
+  <title>Add question</title>
 </head>
 <body>
 	<form action="add_question.php" method="POST">
-		<p>Pitanje: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100"></p>
-    <p>a: <input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
+		<p>Pitanje: <input type="text" name="tekst_pitanja" maxlength="100"></p>
+    <p>a: <input type="text" name="odgovor_a" maxlegth="45">
     <input type="checkbox" name="tocan_a"></p>
-    <p>b: <input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
+    <p>b: <input type="text" name="odgovor_b" maxlegth="45">
     <input type="checkbox" name="tocan_b"></p>
-    <p>c: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
+    <p>c: <input type="text" name="odgovor_c" maxlegth="45">
     <input type="checkbox" name="tocan_c"></p>
-    <p>d: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
+    <p>d: <input type="text" name="odgovor_d" maxlegth="45">
     <input type="checkbox" name="tocan_d"></p>
     <p><input type="text" name="bodovi"></p>
     <p><input type="submit" value="potvrdi" ></p>
