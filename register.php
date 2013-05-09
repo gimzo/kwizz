@@ -38,15 +38,15 @@
 		<legend>Register</legend>
 		<p>
 			<label for"nickname">Desired Nickname:</label>
-			<input type="text" name="nickname" maxlength="20" />
+			<input type="text" name="nickname" id="nickname" maxlength="20" />
 		</p>
 		<p>
 			<label for="password">Password:</label>
-			<input type="password" name="password" maxlength="45" />
+			<input type="password" name="password" id="password" maxlength="45" />
 		</p>
 		<p>
 			<label for="country">Country:</label>
- 			<select name="country">
+ 			<select name="country" id="country">
  				<option value="default" disabled="disabled" selected="selected">Select</option>
  				<option value="af">Afghanistan</option>
 				<option value="ax">Aaland Islands</option>

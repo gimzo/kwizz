@@ -8,7 +8,7 @@ echo <<<END
 					<input type="submit" name="Submit" value="Logout" />
 				</form>
 			</div>
-			<div class="floatR">Welcome $user, have a nice stay!</div>
+			<div class="floatR">Welcome <a href="profile.php">$user</a>, have a nice stay!</div>
 		</div>
 END;
 	} else {
