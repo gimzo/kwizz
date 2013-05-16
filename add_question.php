@@ -74,7 +74,32 @@
 				}
 
 			} else if ($vrsta=="2") {
-				// TO-DO
+				if(empty($_POST['tekst_pitanja']) || empty($_POST['odgovor_a']) || empty($_POST['odgovor_b']) || empty($_POST['bodovi'])) {
+					print '<script type="text/javascript">';
+					print 'alert("niste popunili sve textboxe")';
+					print '</script>';  
+				} else {
+					if(empty ($_POST['tocan_a']) && empty($_POST['tocan_b'])) {
+						print '<script type="text/javascript">';
+						print 'alert("niste odabrali nijedan odgovor")';
+						print '</script>';  
+					} else {
+						mysqli_query($mysqli, "INSERT INTO `pitanje` (`tekst_pitanja`, `vrsta_pitanja`, `bodovi_pitanja`, `jezik_pitanja`, `id_autor`) VALUES ('$tekst', '$vrsta', '$bodovi', '$jezik', '$autor');");
+						$id=mysqli_insert_id($mysqli);
+					
+						$tocan=1;
+						if(empty($_POST['tocan_a'])) {
+							$tocan=0;
+						}
+						mysqli_query($mysqli, "INSERT INTO `odgovor` (`tekst_odgovor`, `tocan_odgovor`, `id_pitanje`) VALUES ('$odgovor_a', '$tocan', '$id');"); 
+
+						$tocan=1;
+						if(empty($_POST['tocan_b'])) {
+							$tocan=0;
+						}
+						mysqli_query($mysqli, "INSERT INTO `odgovor` (`tekst_odgovor`, `tocan_odgovor`, `id_pitanje`) VALUES ('$odgovor_b', '$tocan', '$id');");
+					} 	
+				}			
 			} else {
 				print '<script type="text/javascript">';
 				print 'alert("niste popunili sve textboxe")';
@@ -97,18 +122,35 @@
 	<script language="javascript" type="text/javascript">
 	function checkvalue(val) {
 		if(val=="1") {
+			document.getElementById("potvrdi").style.visibility = "visible";
+			document.getElementById("pitanje").style.visibility = "visible";
+			document.getElementById("a").style.visibility = "visible";
+			document.getElementById("pokazi_a").style.visibility = "hidden";
+			document.getElementById("pokazi_b").style.visibility = "hidden";
 			document.getElementById("checkbox_a").style.visibility = "hidden";
-			document.getElementById("glupost").style.visibility = "hidden";
-			document.getElementById("b").style.visibility = "hidden";
+			document.getElementById("b").style.visibility="hidden";
 			document.getElementById("c").style.visibility = "hidden";
 			document.getElementById("d").style.visibility = "hidden";
-		} else {
+		} else if(val=="0") {
+			document.getElementById("potvrdi").style.visibility = "visible";
+			document.getElementById("pitanje").style.visibility = "visible";
 			document.getElementById("checkbox_a").style.visibility = "visible";
-			document.getElementById("glupost").style.visibility = "visible";
+			document.getElementById("pokazi_a").style.visibility = "visible";
 			document.getElementById("a").style.visibility = "visible";
 			document.getElementById("b").style.visibility = "visible";
 			document.getElementById("c").style.visibility = "visible";
 			document.getElementById("d").style.visibility = "visible";
+			document.getElementById("pokazi_b").style.visibility = "visible";
+		} else if(val=="2") {
+			document.getElementById("potvrdi").style.visibility = "visible";
+			document.getElementById("pitanje").style.visibility = "visible";
+			document.getElementById("a").style.visibility = "visible";
+			document.getElementById("checkbox_a").style.visibility = "visible";
+			document.getElementById("pokazi_a").style.visibility = "hidden";
+			document.getElementById("pokazi_b").style.visibility = "hidden";
+			document.getElementById("b").style.visibility = "visible";
+			document.getElementById("c").style.visibility = "hidden";
+			document.getElementById("d").style.visibility = "hidden";
 		}
 	}
 	</script>
@@ -121,25 +163,29 @@
 		<option value="1">Upisivanje odgovora</option>
 		<option value="2">Tocno / Netocno</option>
 	</select>
-	<p>Pitanje: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
-	Bodovi: <input type="text" name="bodovi"></p>
-	<div id="a" style="visibility: visible;">
-		<p><span id="glupost">a: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
+	<div id="pitanje" style="visibility: hidden;">
+		<p>Pitanje: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
+		Bodovi: <input type="text" name="bodovi"></p>
+	</div>
+	<div id="a" style="visibility: hidden;">
+		<p><span id="pokazi_a">a: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
 		<input type="checkbox" id="checkbox_a" name="tocan_a"></p>
 	</div>
-	<div id="b" style="visibility: visible;">
-		<p>b: <input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
+	<div id="b" style="visibility: hidden;">
+		<p><span id="pokazi_b">b: </span><input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
 		<input type="checkbox" name="tocan_b"></p>
 	</div>
-	<div id="c" style="visibility: visible;">
+	<div id="c" style="visibility: hidden;">
 		<p>c: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
 		<input type="checkbox" name="tocan_c"></p>
 	</div>
-	<div id="d" style="visibility: visible;">
+	<div id="d" style="visibility: hidden;">
 		<p>d: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
 		<input type="checkbox" name="tocan_d"></p>
 	</div>
-	<p><input type="submit" value="potvrdi" ></p>
+	<div id="potvrdi" style="visibility: hidden;">
+		<p><input type="submit" value="potvrdi" ></p>
+	</div>
 	</form> 
 </body>
 </html>
