@@ -19,6 +19,10 @@ img {
 	float: right;
 }
 
+.formErrors {
+	/*form error style*/
+}
+
 /* Divovi */
 
 #wrapper {
@@ -37,4 +41,68 @@ img {
 	margin-left: 20px;
 }
 
-/* Login/Register forma */
+#register {
+	margin: 40px auto 0 auto;
+	/* Firefox v3.6+ */
+	background-image:-moz-radial-gradient(50% 23%,circle farthest-corner,rgb(41,98,140) 0%,rgb(14,55,86) 100%); 
+	/* Safari v4.0+ and by Chrome v3.0+ */
+	background-image:-webkit-gradient(radial,50% 23%,0,50% 23%,345,color-stop(0, rgb(41,98,140)),color-stop(1, rgb(14,55,86)));
+	/* Safari v6.0+ and by Chrome v10.0+ */
+	background-image:-webkit-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
+	/* IE v10+ */
+	background-image:-ms-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
+	background-image:radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
+	width:400px;
+	height:400px;
+	/* Firefox v1.0+ */
+	-moz-border-radius:25px ;
+	/* Safari v3.0+ and by Chrome v0.2+ */
+	-webkit-border-radius:25px ;
+	/* Firefox v4.0+ , Safari v5.0+ , Chrome v4.0+ , Opera v10.5+  and by IE v9.0+ */
+	border-radius:25px ;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Style=2)";
+	filter:progid:DXImageTransform.Microsoft.Alpha(Style=2);
+}
+
+#registerContent {
+	width: 360px;
+	height: auto;
+	float: left;
+	margin: 50px 20px 30px 20px;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+#registerContent fieldset {
+	border: none;
+}
+
+#logo {
+	width: 250px;
+	height: 100px;
+	float: left;
+	margin: 35px 75px 0 75px;
+	background-image: url('../images/logo.png');
+}
+
+#registerContent input[type=text], #registerContent input[type=password] {
+	margin: 2px 0 10px 0;
+	background: white;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #888;
+	color: #666;
+	float: left;
+	padding: 5px 10px;
+	width: 340px;
+	outline: none;
+}
+
+#registerContent select {
+	margin-top: 2px;
+}
+
+#registerContent input[type=submit] {
+	margin-top: 30px;
+}
