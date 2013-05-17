@@ -1,9 +1,11 @@
 <?php 
 	session_start();
+
+	include_once 'config.php';
+	
 	if ($_SERVER['REQUEST_METHOD']==='POST') {
 		// Ako sesija nije aktivna login
 		if (!isset($_SESSION['user'])) {
-			include_once 'config.php';
 
 			$nickname=$_POST['nickname'];
 			$password=$_POST['password'];

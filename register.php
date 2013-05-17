@@ -1,13 +1,15 @@
 <?php
+	include_once 'config.php';
+
 	if ($_SERVER['REQUEST_METHOD']==='POST') {
 		$nickname=$_POST['nickname'];
 		$password=$_POST['password'];
-		$country=$_POST['country'];
-	
-		// Provjera da li su sva polja puna
-		if (!empty($nickname) && !empty($password) && $country!='default') {
-			include_once 'config.php';
+		if (isset($_POST['country'])) {
+			$country=$_POST['country'];
+		}
 
+		// Provjera da li su sva polja puna
+		if (!empty($nickname) && !empty($password) && !empty($country)) {
 			db_connect();
 
 			$nickname=mysqli_real_escape_string($mysqli, $nickname);
@@ -18,14 +20,14 @@
 			// Provjera da li postoji vec korisnik u bazi s istim nickname-om
 			if (mysqli_num_rows($result)==0) {
 				mysqli_query($mysqli, "INSERT INTO korisnik (nadimak_korisnik, password_korisnik, drzava_korisnik) VALUES ('$nickname', md5('$password'), '$country');");
-				echo "Registration successful. Click <a href=\"index.php\">here</a> to login.";
+				$_POST['ReportSuccess']=array("Registration successful. Click <a href=\"index.php\">here</a> to login.");
 			} else {
-				echo "Nickname: '$nickname' is already in use. Please choose another nickname.";
+				$_POST['ReportFailure']=array("Nickname: '$nickname' is already in use. Please choose another nickname.");
 			}
 					
 			db_disconnect();
 		} else {
-			echo "Please fill all fields to continue registration.";
+			$_POST['ReportFailure']=array("Please fill all fields to continue registration.");
 		}
 	}
 ?>
@@ -45,11 +47,11 @@
 			<fieldset >
 				<p>
 					<label for"nickname">Desired Nickname:</label><br>
-					<input type="text" name="nickname" id="regnick" maxlength="20" />
+					<input type="text" name="nickname" id="nickname" maxlength="20" />
 				</p>
 				<p>
 					<label for="password">Password:</label><br>
-					<input type="password" name="password" id="regpass" maxlength="45" />
+					<input type="password" name="password" id="password" maxlength="45" />
 				</p>
 				<p>
 					<label for="country">Country:</label><br>
@@ -311,5 +313,6 @@
 			</form>
 		</div>
 	</div>
+	<?php form_report() ?>
 </body>
 </html>

@@ -32,4 +32,25 @@ function db_disconnect() {
 	global $mysqli;
 	mysqli_close($mysqli);
 }
+
+// Form report
+function form_report() {
+	// Za gresku postaviti POST: Report Failure
+	// Za uspjesno obavljeno postaviti POST: Report Success
+	if (isset($_POST['ReportFailure'])) {
+		echo "<div class='formReport redReport'>";
+			echo "<div class='reportImg'><img src='./images/warning.png' width='32' height='32'></img></div>";
+			foreach ($_POST['ReportFailure'] as $report):
+				echo "<div class='reportContent'><div class='verticalAlign'><p>$report</p></div></div>";
+			endforeach;
+		echo "</div>";
+	} elseif (isset($_POST['ReportSuccess'])) {
+		echo "<div class='formReport greenReport'>";
+			echo "<div class='reportImg'><img src='./images/success.png' width='32' height='32'></img></div>";
+			foreach ($_POST['ReportSuccess'] as $report):
+				echo "<div class='reportContent'><div class='verticalAlign'><p>$report</p></div></div>";
+			endforeach;
+		echo "</div>";
+	}
+}
 ?>
