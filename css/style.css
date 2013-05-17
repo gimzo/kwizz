@@ -60,6 +60,7 @@ img {
 #wrapper {
 	width: 960px;
 	height: auto;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -73,6 +74,7 @@ img {
 	margin-left: 20px;
 }
 
+/* Registracija */
 #register {
 	margin: 40px auto 0 auto;
 	/* Firefox v3.6+ */
@@ -96,12 +98,13 @@ img {
 	filter:progid:DXImageTransform.Microsoft.Alpha(Style=2);
 }
 
-#logo {
+#logoRegistration {
 	width: 250px;
-	height: 100px;
+	height: 102px;
 	float: left;
 	margin: 35px 75px 0 75px;
 	background-image: url('../images/logo.png');
+	background-size: 250px 102px;
 }
 
 #registerContent {
@@ -135,6 +138,21 @@ img {
 	margin-top: 2px;
 }
 
-#registerContent input[type=submit] {
+#registerContent input[type=submit], #registerContent button {
 	margin-top: 30px;
+}
+
+/* Header */
+#header {
+	width: 960px;
+	height: auto;
+	float: left;
+}
+
+#logoHeader {
+	width: 250px;
+	height: 102px;
+	margin: 0 auto 50px auto;
+	background-image: url('../images/logo.png');
+	background-size: 250px 102px;
 }

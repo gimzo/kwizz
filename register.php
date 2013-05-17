@@ -37,11 +37,16 @@
 <head>
 	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script language="javascript" type="text/javascript">
+	function go_back() {
+    window.location.href = "index.php";
+	}
+	</script>
 </head>
 <body>
 	<!-- Register forma -->
 	<div id="register">
-		<div id="logo"></div>
+		<div id="logoRegistration"></div>
 		<div id="registerContent">
 			<form action="register.php" method="post" accept-charset="UTF-8">
 			<fieldset >
@@ -308,6 +313,7 @@
 						<option value="zw">Zimbabwe</option>
 		 			</select>
 		 		</p>
+		 		<button type="button" class="floatL" onclick="go_back()">Go back</button> 
 				<input type="submit" name="Submit" value="Register" class="floatR" />
 			</fieldset>
 			</form>

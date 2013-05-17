@@ -41,6 +41,7 @@
 </head>
 <body>
 	<div id="wrapper">
+		<div id="header"><div id='logoHeader'></div></div>
 		<?php include_once 'bar.php'; ?>
 	</div>
 </body>
