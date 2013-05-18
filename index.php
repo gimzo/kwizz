@@ -1,36 +1,5 @@
 <?php 
 	session_start();
-
-	include_once 'config.php';
-	
-	if ($_SERVER['REQUEST_METHOD']==='POST') {
-		// Ako sesija nije aktivna login
-		if (!isset($_SESSION['user'])) {
-
-			$nickname=$_POST['nickname'];
-			$password=$_POST['password'];
-
-			db_connect();
-
-			$nickname=mysqli_real_escape_string($mysqli, $nickname);
-			$password=mysqli_real_escape_string($mysqli, $password);
-
-			$result=mysqli_query($mysqli, "SELECT id_korisnik FROM korisnik WHERE nadimak_korisnik = '$nickname' AND password_korisnik = md5('$password');");
-			if (mysqli_num_rows($result)==1) {
-				$_SESSION['user']="$nickname";
-				header('Location: index.php');
-			} else {
-				echo "Wrong username or password!";
-			}
-
-		 	db_disconnect();
-
-		} else {
-			// Inace logout
-			unset($_SESSION['user']);
-			header('Location: index.php');
-		}
-	}
 ?>
 
 <!DOCTYPE html> 
@@ -41,8 +10,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header"><div id='logoHeader'></div></div>
-		<?php include_once 'bar.php'; ?>
+		<div id="header"><div id='headerLogo'><img src="./images/logo.png" width="250" height="102"></img></div></div>
+		<div id="menu">
+		</div>
+		<?php include_once 'statusbar.php'; ?>
 	</div>
 </body>
 </html>

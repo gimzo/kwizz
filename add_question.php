@@ -1,6 +1,10 @@
 <?php
 	session_start();
 
+	if (!isset($_SESSION['user'])) {
+		header('Location: index.php');
+	}
+
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$tekst=$_POST['tekst_pitanja'];
 		$odgovor_a=$_POST['odgovor_a'];
@@ -122,35 +126,35 @@
 	<script language="javascript" type="text/javascript">
 	function checkvalue(val) {
 		if(val=="1") {
-			document.getElementById("potvrdi").style.visibility = "visible";
-			document.getElementById("pitanje").style.visibility = "visible";
-			document.getElementById("a").style.visibility = "visible";
-			document.getElementById("pokazi_a").style.visibility = "hidden";
-			document.getElementById("pokazi_b").style.visibility = "hidden";
-			document.getElementById("checkbox_a").style.visibility = "hidden";
-			document.getElementById("b").style.visibility="hidden";
-			document.getElementById("c").style.visibility = "hidden";
-			document.getElementById("d").style.visibility = "hidden";
+			document.getElementById("potvrdi").style.display = "inline";
+			document.getElementById("pitanje").style.display = "inline";
+			document.getElementById("a").style.display = "inline";
+			document.getElementById("pokazi_a").style.display = "none";
+			document.getElementById("pokazi_b").style.display = "none";
+			document.getElementById("checkbox_a").style.display = "none";
+			document.getElementById("b").style.display="none";
+			document.getElementById("c").style.display = "none";
+			document.getElementById("d").style.display = "none";
 		} else if(val=="0") {
-			document.getElementById("potvrdi").style.visibility = "visible";
-			document.getElementById("pitanje").style.visibility = "visible";
-			document.getElementById("checkbox_a").style.visibility = "visible";
-			document.getElementById("pokazi_a").style.visibility = "visible";
-			document.getElementById("a").style.visibility = "visible";
-			document.getElementById("b").style.visibility = "visible";
-			document.getElementById("c").style.visibility = "visible";
-			document.getElementById("d").style.visibility = "visible";
-			document.getElementById("pokazi_b").style.visibility = "visible";
+			document.getElementById("potvrdi").style.display = "inline";
+			document.getElementById("pitanje").style.display = "inline";
+			document.getElementById("checkbox_a").style.display = "inline";
+			document.getElementById("pokazi_a").style.display = "inline";
+			document.getElementById("a").style.display = "inline";
+			document.getElementById("b").style.display = "inline";
+			document.getElementById("c").style.display = "inline";
+			document.getElementById("d").style.display = "inline";
+			document.getElementById("pokazi_b").style.display = "inline";
 		} else if(val=="2") {
-			document.getElementById("potvrdi").style.visibility = "visible";
-			document.getElementById("pitanje").style.visibility = "visible";
-			document.getElementById("a").style.visibility = "visible";
-			document.getElementById("checkbox_a").style.visibility = "visible";
-			document.getElementById("pokazi_a").style.visibility = "hidden";
-			document.getElementById("pokazi_b").style.visibility = "hidden";
-			document.getElementById("b").style.visibility = "visible";
-			document.getElementById("c").style.visibility = "hidden";
-			document.getElementById("d").style.visibility = "hidden";
+			document.getElementById("potvrdi").style.display = "inline";
+			document.getElementById("pitanje").style.display = "inline";
+			document.getElementById("a").style.display = "inline";
+			document.getElementById("checkbox_a").style.display = "inline";
+			document.getElementById("pokazi_a").style.display = "none";
+			document.getElementById("pokazi_b").style.display = "none";
+			document.getElementById("b").style.display = "inline";
+			document.getElementById("c").style.display = "none";
+			document.getElementById("d").style.display = "none";
 		}
 	}
 	</script>
@@ -163,27 +167,27 @@
 		<option value="1">Upisivanje odgovora</option>
 		<option value="2">Tocno / Netocno</option>
 	</select>
-	<div id="pitanje" style="visibility: hidden;">
+	<div id="pitanje" style="display: none;">
 		<p>Pitanje: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
 		Bodovi: <input type="text" name="bodovi"></p>
 	</div>
-	<div id="a" style="visibility: hidden;">
+	<div id="a" style="display: none;">
 		<p><span id="pokazi_a">a: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
 		<input type="checkbox" id="checkbox_a" name="tocan_a"></p>
 	</div>
-	<div id="b" style="visibility: hidden;">
+	<div id="b" style="display: none;">
 		<p><span id="pokazi_b">b: </span><input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
 		<input type="checkbox" name="tocan_b"></p>
 	</div>
-	<div id="c" style="visibility: hidden;">
+	<div id="c" style="display: none;">
 		<p>c: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
 		<input type="checkbox" name="tocan_c"></p>
 	</div>
-	<div id="d" style="visibility: hidden;">
+	<div id="d" style="display: none;">
 		<p>d: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
 		<input type="checkbox" name="tocan_d"></p>
 	</div>
-	<div id="potvrdi" style="visibility: hidden;">
+	<div id="potvrdi" style="display: none;">
 		<p><input type="submit" value="potvrdi" ></p>
 	</div>
 	</form> 

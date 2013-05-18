@@ -5,9 +5,20 @@
 	padding: 0;	
 }
 
+html {
+	background-color: #F6F2FF;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
+}
+
 img {
 	border: none;	
 }
+
+a:link { text-decoration: none; }
+a:visited { color: #333; }
+a:hover { text-decoration: underline; }
+a:active {text-decoration: none;}
 
 /* Klase */
 
@@ -19,7 +30,40 @@ img {
 	float: right;
 }
 
-.formReport {
+.horCenter{
+	text-align: center;
+}
+
+.vertMiddle {
+	display: table-cell;
+	vertical-align: middle;;
+}
+
+.displayTable {
+	display: table;
+}
+
+/* Layout */
+
+#wrapper {
+	width: 960px;
+	height: auto;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#statusBar {
+	width: 100%;
+	height: auto;
+	border: 1px solid #EDE9F6;
+	border-radius: 25px;
+	padding: 10px 0 10px 0;
+}
+
+/* Form reporter */
+
+#formReport {
 	display: table;
 	margin: 20px auto 0 auto;
 	padding: 10px;
@@ -34,71 +78,35 @@ img {
 	border: 2px solid #84FFAD;
 }
 
-.reportImg {
+#reportImg {
 	display: table-cell;
 	vertical-align: middle;
 	float: left;
+	margin-right: 10px;
 }
 
-.reportContent {
-	font-family: Arial, Helvetica, sans-serif;
+#reportContent {
 	font-size: 14px;
-	display: table;
 }
 
-.reportContent p {
-	margin-left: 10px;
-}
+/* Registracija i Login */
 
-.verticalAlign {
-	display: table-cell;
-	vertical-align: middle;;
-}
-
-/* Divovi */
-
-#wrapper {
-	width: 960px;
-	height: auto;
-	margin-top: 50px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#loginBar {
-	width: 100%;
-	height: 30px;
-}
-
-#loginBar a {
-	margin-left: 20px;
-}
-
-/* Registracija */
-#register {
-	margin: 40px auto 0 auto;
-	/* Firefox v3.6+ */
-	background-image: -moz-radial-gradient(50% 23%,circle farthest-corner,rgb(41,98,140) 0%,rgb(14,55,86) 100%); 
-	/* Safari v4.0+ and by Chrome v3.0+ */
-	background-image: -webkit-gradient(radial,50% 23%,0,50% 23%,345,color-stop(0, rgb(41,98,140)),color-stop(1, rgb(14,55,86)));
-	/* Safari v6.0+ and by Chrome v10.0+ */
-	background-image: -webkit-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
-	/* IE v10+ */
-	background-image: -ms-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
-	background-image: radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
+#form {
 	width: 400px;
 	height: 400px;
-	/* Firefox v1.0+ */
-	-moz-border-radius: 25px ;
-	/* Safari v3.0+ and by Chrome v0.2+ */
-	-webkit-border-radius: 25px ;
-	/* Firefox v4.0+ , Safari v5.0+ , Chrome v4.0+ , Opera v10.5+  and by IE v9.0+ */
+	margin: 40px auto 0 auto;
 	border-radius: 25px ;
+	background-color: #1D4E73; /* Opera */
+	background-image: -moz-radial-gradient(50% 23%,circle farthest-corner,rgb(41,98,140) 0%,rgb(14,55,86) 100%); /* Firefox v3.6+ */
+	background-image: -webkit-gradient(radial,50% 23%,0,50% 23%,345,color-stop(0, rgb(41,98,140)),color-stop(1, rgb(14,55,86))); /* Safari v4.0+ and by Chrome v3.0+ */
+	background-image: -webkit-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%); /* Safari v6.0+ and by Chrome v10.0+ */
+	background-image: -ms-radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%); /* IE v10+ */
+	background-image: radial-gradient(50% 23%,circle farthest-corner, rgb(41,98,140) 0%,rgb(14,55,86) 100%);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Style=2)";
 	filter:progid:DXImageTransform.Microsoft.Alpha(Style=2);
 }
 
-#logoRegistration {
+#formLogo {
 	width: 250px;
 	height: 102px;
 	float: left;
@@ -107,22 +115,21 @@ img {
 	background-size: 250px 102px;
 }
 
-#registerContent {
+#formContent {
 	width: 360px;
 	height: auto;
 	float: left;
 	margin: 50px 20px 30px 20px;
 	color: #fff;
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 }
 
-#registerContent fieldset {
+#formContent fieldset {
 	border: none;
 }
 
-#registerContent input[type=text], #registerContent input[type=password] {
-	width: 340px;
+#formContent input[type=text], #formContent input[type=password] {
+	width: 339px;
 	float: left;
 	margin: 2px 0 10px 0;
 	background: white;
@@ -134,25 +141,38 @@ img {
 	outline: none;
 }
 
-#registerContent select {
+#formContent select {
 	margin-top: 2px;
 }
 
-#registerContent input[type=submit], #registerContent button {
+#formContent input[type=submit], #formContent button {
 	margin-top: 30px;
 }
 
 /* Header */
 #header {
-	width: 960px;
+	width: 100%;
 	height: auto;
-	float: left;
 }
 
-#logoHeader {
+#headerLogo {
 	width: 250px;
 	height: 102px;
 	margin: 0 auto 50px auto;
-	background-image: url('../images/logo.png');
-	background-size: 250px 102px;
+}
+
+/* Menu */
+#menu {
+	width: 100%;
+	height: 40px;
+	border: 1px solid #EDE9F6;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f3f3f3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
 }

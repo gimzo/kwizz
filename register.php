@@ -1,5 +1,11 @@
 <?php
+	session_start();
+
 	include_once 'config.php';
+
+	if (isset($_SESSION['user'])) {
+		header('Location: index.php');
+	}
 
 	if ($_SERVER['REQUEST_METHOD']==='POST') {
 		$nickname=$_POST['nickname'];
@@ -45,9 +51,9 @@
 </head>
 <body>
 	<!-- Register forma -->
-	<div id="register">
-		<div id="logoRegistration"></div>
-		<div id="registerContent">
+	<div id="form">
+		<div id="formLogo"></div>
+		<div id="formContent">
 			<form action="register.php" method="post" accept-charset="UTF-8">
 			<fieldset >
 				<p>
