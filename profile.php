@@ -14,6 +14,7 @@
 	<title>Profile</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -28,8 +29,9 @@
 				<p>Menu</p>
 				<div class="hr1"></div>
 				<ul>
-					<li>Add question</li>
-					<li>Add category</li>
+					<li>Check stats</li>
+					<li><a id="AddQuestion">Add question</a></li>
+					<li>Change nickname</li>
 				</ul>
 				<?php
 				db_connect();
@@ -42,7 +44,6 @@ echo <<<END
 				<p>Admin menu</p>
 				<div class="hr1"></div>
 				<ul>
-					<li>Add question</li>
 					<li>Add category</li>
 				</ul>
 END;
@@ -53,9 +54,16 @@ END;
 			<div id="mainContent">
 				<p class="horCenter" style="color: #275f88;">Options</p>
 				<div class="hr2"></div> 
+				<div id="loadingDiv">
+				</div>
 			</div>
 			<div class="clearBoth"></div>
 		</div>
 	</div>
+	<script type="text/javascript"> 
+ 		$("#AddQuestion").click(function(){
+ 			$("#loadingDiv").load('add_question.php');
+ 		});
+ 	</script>
 </body>
 </html>

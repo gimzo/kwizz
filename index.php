@@ -23,13 +23,17 @@
 				<p>Category</p>
 				<div class="hr1"></div>
 				<ul>
-					<li>Add question</li>
-					<li>Add category</li>
+					<li>Category 1</li>
+					<li>Catefory 2</li>
+					<li>Catefory 3</li>
+					<li>Catefory 4</li>
 				</ul>
 			</div>
 			<div id="mainContent">
 				<p class="horCenter" style="color: #275f88;">Game</p>
 				<div class="hr2"></div> 
+				<div id="loadingDiv">
+				</div>
 			</div>
 			<div class="clearBoth"></div>
 		</div>

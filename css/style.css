@@ -62,9 +62,9 @@ img {
 	color: #777;
 }
 
-#statusBar a:link { text-decoration: none; color: #777; }
+#statusBar a:link { text-decoration: underline; color: #777; }
 #statusBar a:visited { text-decoration: none; color: #777; }
-#statusBar a:hover { text-decoration: none; color: #333; }
+#statusBar a:hover { text-decoration: underline; color: #333; }
 #statusBar a:active { text-decoration: none; color: #333; }
 
 /* Form reporter */
@@ -156,6 +156,7 @@ img {
 }
 
 /* Header */
+
 #header {
 	width: 100%;
 	height: auto;
@@ -168,6 +169,7 @@ img {
 }
 
 /* Menu */
+
 #menu {
 	width: 100%;
 	height: 40px;
@@ -201,6 +203,7 @@ img {
 #menu a:active { text-decoration: none; color: #333; }
 
 /* Content */
+
 #content {
 	width: 940px;
 	height: auto;
@@ -229,6 +232,11 @@ img {
 	text-align: center;
 }
 
+#leftContent a:link { text-decoration: none; color: #fff; }
+#leftContent a:visited { text-decoration: none; color: #fff; }
+#leftContent a:hover { text-decoration: underline; color: #fff; }
+#leftContent a:active { text-decoration: none; color: #fff; }
+
 #leftContent ul li {
 	list-style-image: url('../images/circleul.png');
 	font-size: 14px;
@@ -240,6 +248,11 @@ img {
 	height: auto;
 	float: left;
 	padding: 20px 10px 20px 10px;
+}
+
+#loadingDiv {
+	width: inherit;
+	height: auto;
 }
 
 .hr1 { 
@@ -259,3 +272,4 @@ img {
 	background-image: -ms-linear-gradient(left, #ffffff, #275f88, #ffffff); 
 	background-image: -o-linear-gradient(left, #ffffff, #275f88, #ffffff); 
 }
+

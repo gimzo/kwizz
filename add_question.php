@@ -15,7 +15,6 @@
 		$vrsta=$_POST['select'];
 		$jezik="hr";
 
-		include 'config.php';
 		db_connect();
 	
 		if (isset($_SESSION['user'])) {
@@ -117,13 +116,8 @@
 
 	db_disconnect();
 	}
-?>
 
-<!DOCTYPE html> 
-<html>
-<head>
-	<title>Add question</title>
-	<meta charset="UTF-8">
+echo <<<END
 	<script language="javascript" type="text/javascript">
 	function checkvalue(val) {
 		if(val=="1") {
@@ -159,38 +153,37 @@
 		}
 	}
 	</script>
-</head>
-<body>
+
 	<form action="add_question.php" method="POST">
 	<select name="select" onchange='checkvalue(this.value)' onChange="javascript:changeCheckboxState(this);">
 		<option value="default" disabled="disabled" selected="selected">Select</option>
-		<option value="0">Visestruki izbor</option>
-		<option value="1">Upisivanje odgovora</option>
-		<option value="2">Tocno / Netocno</option>
+		<option value="0">Multiple choice</option>
+		<option value="1">Answer entry</option>
+		<option value="2">True / False</option>
 	</select>
 	<div id="pitanje" style="display: none;">
-		<p>Pitanje: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
-		Bodovi: <input type="text" name="bodovi"></p>
+		<p>Question: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
+		Points: <input type="text" name="bodovi"></p>
 	</div>
 	<div id="a" style="display: none;">
-		<p><span id="pokazi_a">a: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
+		<p><span id="pokazi_a">A: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
 		<input type="checkbox" id="checkbox_a" name="tocan_a"></p>
 	</div>
 	<div id="b" style="display: none;">
-		<p><span id="pokazi_b">b: </span><input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
+		<p><span id="pokazi_b">B: </span><input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
 		<input type="checkbox" name="tocan_b"></p>
 	</div>
 	<div id="c" style="display: none;">
-		<p>c: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
+		<p>C: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
 		<input type="checkbox" name="tocan_c"></p>
 	</div>
 	<div id="d" style="display: none;">
-		<p>d: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
+		<p>D: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
 		<input type="checkbox" name="tocan_d"></p>
 	</div>
 	<div id="potvrdi" style="display: none;">
-		<p><input type="submit" value="potvrdi" ></p>
+		<p><input type="submit" value="Submit"></p>
 	</div>
 	</form> 
-</body>
-</html>
+END;
+?>
