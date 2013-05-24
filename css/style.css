@@ -57,6 +57,7 @@ img {
 	height: auto;
 	border: 1px solid #EDE9F6;
 	border-radius: 25px;
+	margin-bottom: 20px;
 	padding: 10px 0 10px 0;
 	color: #777;
 }
@@ -198,3 +199,63 @@ img {
 #menu a:visited { text-decoration: none; color: #777; }
 #menu a:hover { text-decoration: none; color: #333; }
 #menu a:active { text-decoration: none; color: #333; }
+
+/* Content */
+#content {
+	width: 940px;
+	height: auto;
+	border: 1px solid #EDE9F6;
+	border-radius: 5px;
+	padding: 10px;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f3f3f3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f3f3f3 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
+}
+
+#leftContent {
+	width: 250px;
+	height: auto;
+	border-radius: 5px;
+	margin-right: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	float: left;
+	background-color: #275f88;
+	color: #fff;
+	text-align: center;
+}
+
+#leftContent ul li {
+	list-style-image: url('../images/circleul.png');
+	font-size: 14px;
+	line-height: 40px; 
+}
+
+#mainContent {
+	width: 660px;
+	height: auto;
+	float: left;
+	padding: 20px 10px 20px 10px;
+}
+
+.hr1 { 
+	height: 1px;
+	margin: 10px 0 10px 0;
+	background-image: -moz-linear-gradient(left,  #275f88, #ffffff, #275f88);
+	background-image: -webkit-linear-gradient(left, #275f88, #ffffff, #275f88); 
+	background-image: -ms-linear-gradient(left, #275f88, #ffffff, #275f88); 
+	background-image: -o-linear-gradient(left, #275f88, #ffffff, #275f88); 
+}
+
+.hr2 { 
+	height: 1px;
+	margin: 10px 0 10px 0;
+	background-image: -moz-linear-gradient(left,  #ffffff, #275f88, #ffffff);
+	background-image: -webkit-linear-gradient(left, #ffffff, #275f88, #ffffff); 
+	background-image: -ms-linear-gradient(left, #ffffff, #275f88, #ffffff); 
+	background-image: -o-linear-gradient(left, #ffffff, #275f88, #ffffff); 
+}

@@ -11,13 +11,28 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header"><div id='headerLogo'><img src="./images/logo.png" alt="Kwizz logo" width="250" height="102"></div></div>
+		<div id="header"><div id="headerLogo"><img src="./images/logo.png" alt="Kwizz logo" width="250" height="102"></div></div>
 		<div id="menu">
 			<ul>
-				<li><a href='scoreboard.php'>Scoreboard</a></li>
+				<li><a href="scoreboard.php">Scoreboard</a></li>
 			</ul>
 		</div>
 		<?php include_once 'statusbar.php'; ?>
+		<div id="content">
+			<div id="leftContent">
+				<p>Category</p>
+				<div class="hr1"></div>
+				<ul>
+					<li>Add question</li>
+					<li>Add category</li>
+				</ul>
+			</div>
+			<div id="mainContent">
+				<p class="horCenter" style="color: #275f88;">Game</p>
+				<div class="hr2"></div> 
+			</div>
+			<div class="clearBoth"></div>
+		</div>
 	</div>
 </body>
 </html>
