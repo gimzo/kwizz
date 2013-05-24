@@ -35,6 +35,7 @@
 <html>
 <head>
 	<title>Login</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script language="javascript" type="text/javascript">
 	function go_back() {
@@ -62,6 +63,7 @@
 			</fieldset>
 			</form>
 		</div>
+		<div class='clearBoth'></div>
 	</div>
 	<?php form_report() ?>
 </body>

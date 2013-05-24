@@ -15,11 +15,6 @@ img {
 	border: none;	
 }
 
-a:link { text-decoration: none; }
-a:visited { color: #333; }
-a:hover { text-decoration: underline; }
-a:active {text-decoration: none;}
-
 /* Klase */
 
 .floatL {
@@ -43,6 +38,10 @@ a:active {text-decoration: none;}
 	display: table;
 }
 
+.clearBoth{
+	clear: both;
+}
+
 /* Layout */
 
 #wrapper {
@@ -59,7 +58,13 @@ a:active {text-decoration: none;}
 	border: 1px solid #EDE9F6;
 	border-radius: 25px;
 	padding: 10px 0 10px 0;
+	color: #777;
 }
+
+#statusBar a:link { text-decoration: none; color: #777; }
+#statusBar a:visited { text-decoration: none; color: #777; }
+#statusBar a:hover { text-decoration: none; color: #333; }
+#statusBar a:active { text-decoration: none; color: #333; }
 
 /* Form reporter */
 
@@ -93,7 +98,7 @@ a:active {text-decoration: none;}
 
 #form {
 	width: 400px;
-	height: 400px;
+	height: auto;
 	margin: 40px auto 0 auto;
 	border-radius: 25px ;
 	background-color: #1D4E73; /* Opera */
@@ -176,3 +181,20 @@ a:active {text-decoration: none;}
 	background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
 }
+
+#menu li {
+	list-style: none;
+	display: inline-block;
+	padding: 10px 30px 10px 30px;
+	border-right: 1px solid #EDE9F6;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: center;
+	color: #777;
+}
+
+#menu a:link { text-decoration: none; color: #777; }
+#menu a:visited { text-decoration: none; color: #777; }
+#menu a:hover { text-decoration: none; color: #333; }
+#menu a:active { text-decoration: none; color: #333; }

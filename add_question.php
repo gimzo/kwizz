@@ -123,6 +123,7 @@
 <html>
 <head>
 	<title>Add question</title>
+	<meta charset="UTF-8">
 	<script language="javascript" type="text/javascript">
 	function checkvalue(val) {
 		if(val=="1") {

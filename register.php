@@ -26,7 +26,8 @@
 			// Provjera da li postoji vec korisnik u bazi s istim nickname-om
 			if (mysqli_num_rows($result)==0) {
 				mysqli_query($mysqli, "INSERT INTO korisnik (nadimak_korisnik, password_korisnik, drzava_korisnik) VALUES ('$nickname', md5('$password'), '$country');");
-				$_POST['ReportSuccess']=array("Registration successful. Click <a href=\"index.php\">here</a> to login.");
+				$_POST['ReportSuccess']=array("Registration successful. You will be redirected soon to the homepage.");
+				header('Refresh: 4;url=index.php');
 			} else {
 				$_POST['ReportFailure']=array("Nickname: '$nickname' is already in use. Please choose another nickname.");
 			}
@@ -42,6 +43,7 @@
 <html>
 <head>
 	<title>Register</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script language="javascript" type="text/javascript">
 	function go_back() {
@@ -324,6 +326,7 @@
 			</fieldset>
 			</form>
 		</div>
+		<div class='clearBoth'></div>
 	</div>
 	<?php form_report() ?>
 </body>
