@@ -24,14 +24,16 @@
 				<li><a href="index.php">Start playing</a></li>
 			</ul>
 		</div>
+		<?php include_once 'statusbar.php'; ?>
 		<div id="content">
 			<div id="leftContent">
 				<p>Menu</p>
 				<div class="hr1"></div>
 				<ul>
 					<li>Check stats</li>
-					<li><a id="AddQuestion">Add question</a></li>
+					<li><a id="AddQuestion">Suggest <a href=""></a> question</a></li>
 					<li>Change nickname</li>
+					<li>Reset stats</li>
 				</ul>
 				<?php
 				db_connect();
@@ -45,6 +47,8 @@ echo <<<END
 				<div class="hr1"></div>
 				<ul>
 					<li>Add category</li>
+					<li>Approve questions</li>
+					<li>Change user rights</li>
 				</ul>
 END;
 				}
@@ -65,5 +69,6 @@ END;
  			$("#loadingDiv").load('add_question.php');
  		});
  	</script>
+ 	<?php include_once 'chatbar.php'; ?>
 </body>
 </html>

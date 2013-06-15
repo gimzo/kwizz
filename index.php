@@ -5,7 +5,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
-	<title>Homepage</title>
+	<title>Kwizz | Homepage</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -38,5 +38,6 @@
 			<div class="clearBoth"></div>
 		</div>
 	</div>
+	<?php include_once 'chatbar.php'; ?>
 </body>
 </html>

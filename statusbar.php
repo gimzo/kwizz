@@ -4,7 +4,7 @@
 echo <<<END
 		<div id='statusBar' class='horCenter displayTable'>
 			<div class='vertMiddle'>
-				<p>Welcome <a href='profile.php'>$user</a> | <a href='logout.php'>Logout</a></p>
+				<p>Logged in as: <a href='profile.php'>$user</a> | <a href='logout.php'>Logout</a></p>
 			</div>
 		</div>
 END;
