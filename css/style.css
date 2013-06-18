@@ -293,7 +293,7 @@ img {
 	width: 150px;
 }
 
-/* igra */
+/* Game */
 
 #pitanje {
 	text-align: center;
@@ -312,4 +312,37 @@ img {
 }
 .btnOdg:hover {
 	background-color: yellow;
+}
+
+.gamescreen {
+	display: none;
+	text-align: center;
+}
+
+.rbotun {
+	text-align: center;
+	background-color: #275f88;
+	color: #eeddcc;
+	border: 4px solid #444488;
+	margin: 0 20px 0 20px;
+	padding: 2px 4px 2px 4px;
+}
+
+.rbotun:hover {
+	background-color: #d8a077;
+}
+
+.botun {
+	text-align: center;
+	background-color: #222222;
+	color: #eeddcc;
+	border: 4px solid #000000;
+	margin: 80px 20px 20px 20px;
+	padding: 2px 4px 2px 4px;
+}
+
+.botun:hover {
+	background-color: #aaaaaa;
+	border: 4px solid #ffffff;
+	color: #cceedd;
 }

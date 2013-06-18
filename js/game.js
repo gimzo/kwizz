@@ -1,5 +1,49 @@
+/* Početni ekran i setup opcija */
+function StartGame()
+{
+	gamemode="FFA";
+	level=new Array(true,true,true);
+	$("#startgame").fadeIn();
+}
+
+/* Funkcije za odabir opcija botunima */
+function setMode(b)
+{
+	var mode=$(b).attr("id");
+
+	if (mode=="CHA"){
+		gamemode="CHA";
+	}
+	else if (mode=="FFA"){
+		gamemode="FFA";
+	}
+	$('#FFA').css("background-color",(gamemode=="FFA")?"#cccccc":"#275f88");
+	$('#CHA').css("background-color",(gamemode=="CHA")?"#cccccc":"#275f88");
+}
+
+function setLevel(b)
+{
+		switch($(b).attr("id"))
+		{
+			case "easy":
+				level[0]=!level[0];
+				break;
+			case "med":
+				level[1]=!level[1];
+				break;
+			case "hard":
+				level[2]=!level[2];
+				break;
+		}
+		$('#easy').css("background-color",level[0]?"#cccccc":"#275f88");
+		$ ('#med').css("background-color",level[1]?"#cccccc":"#275f88");
+		$('#hard').css("background-color",level[2]?"#cccccc":"#275f88");
+}
+
+/* Izvlači iz baze novo pitanje */
 function NovoPitanje ()
 {
+	$(".gamescreen").hide();
 	odgovoreno=false;
 	$("#odgovorabcd").empty();
 	$(".popup").hide();
@@ -33,6 +77,7 @@ function NovoPitanje ()
 	);
 }
 
+/* Postavlja tipke s odgovorima */
 function pripremiABCD(data)
 {
 	tocan_odgovor=data.tocan;
@@ -61,11 +106,7 @@ function pripremiABCD(data)
 	
 }
 
-function OdabirPitanja ()
-{
-	$ ( '#tocno' ).fadeIn();
-}
-
+/* Provjera točnog odgovora kod unosa */
 function CheckTekstOdgovora(giveup=false)
 {
 	if (odgovoreno) {NovoPitanje(); return;}
@@ -86,6 +127,7 @@ function CheckTekstOdgovora(giveup=false)
 	}
 }
 
+/* Provjera točnog odgovora kod multiple choice */
 function CheckABCDodgovor(ovo)
 {
 	if (odgovoreno) {NovoPitanje(); return;}
