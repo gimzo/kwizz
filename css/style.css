@@ -292,3 +292,24 @@ img {
 	height: 200px;
 	width: 150px;
 }
+
+/* igra */
+
+#pitanje {
+	text-align: center;
+}
+
+.popup {
+	display: none;
+	text-align: center;
+}
+.odgovor {
+	display: none;
+	text-align: center;
+}
+.btnOdg {
+	border: 1px solid #EDE9F6;
+}
+.btnOdg:hover {
+	background-color: yellow;
+}

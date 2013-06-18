@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	header("Content-type: text/html; charset=utf-8");
 ?>
 
 <!DOCTYPE html> 
@@ -8,6 +9,8 @@
 	<title>Kwizz | Homepage</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="js/game.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -33,6 +36,7 @@
 				<p class="horCenter" style="color: #275f88;">Game</p>
 				<div class="hr2"></div> 
 				<div id="loadingDiv">
+					<?php include("game.php"); ?>
 				</div>
 			</div>
 			<div class="clearBoth"></div>
