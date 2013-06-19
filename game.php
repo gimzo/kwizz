@@ -20,7 +20,7 @@
 		<span class="rbotun" id="CHA" onclick="setMode(this)">Challenge</span>
 	</div>
 	<div id="kat">
-		<p>Categories</p>
+		<a href='#' onclick="Kategorije()">Categories</a>
 	</div>
 	<div>
 		<p>Level</p>
@@ -32,6 +32,10 @@
 		<span class="botun" onclick="NovoPitanje()">Start!</span></div>
 </div>
 <div id="endgame" class="gamescreen">
+</div>
+<div id="window_kategorija">
+</div>
+<div id="kategorija">
 </div>
 
 <script>

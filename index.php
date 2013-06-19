@@ -36,7 +36,10 @@
 				<p class="horCenter" style="color: #275f88;">Game</p>
 				<div class="hr2"></div> 
 				<div id="loadingDiv">
-					<?php include("game.php"); ?>
+					<?php 
+					if (isset($_SESSION['user'])) 
+						include("game.php"); 
+					?>
 				</div>
 			</div>
 			<div class="clearBoth"></div>

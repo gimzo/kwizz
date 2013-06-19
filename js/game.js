@@ -1,4 +1,5 @@
 /* Početni ekran i setup opcija */
+
 function StartGame()
 {
 	gamemode="FFA";
@@ -7,6 +8,7 @@ function StartGame()
 }
 
 /* Funkcije za odabir opcija botunima */
+
 function setMode(b)
 {
 	var mode=$(b).attr("id");
@@ -40,7 +42,38 @@ function setLevel(b)
 		$('#hard').css("background-color",level[2]?"#cccccc":"#275f88");
 }
 
+/* Prikaz kategorija */
+
+function Kategorije()
+{
+	$('#window_kategorija').empty();
+	console.log("vani smo");
+	$.ajax(
+	{
+		url: 'get_tlc.php',
+		type: 'GET',
+		dataType: 'json',
+		success: function(json){
+			console.log("nutra smo");
+			for(var i in json) {
+				if(json.hasOwnProperty(i) && !isNaN(+i)) {
+					$('#window_kategorija').append('<input type="checkbox" value="'+i+'"/>'+json[i]+' ');
+				}
+		}
+		$('#window_kategorija').append('<p class="right"><a href="#" onclick="KatClose()">Zatvori</a></p>');
+		$('#window_kategorija').fadeIn();
+	}
+	}
+	);
+}
+
+function KatClose()
+{
+	$('#window_kategorija').fadeOut();
+}
+
 /* Izvlači iz baze novo pitanje */
+
 function NovoPitanje ()
 {
 	$(".gamescreen").hide();
@@ -50,13 +83,20 @@ function NovoPitanje ()
 	$(".odgovor").hide();
 	$("#txtOdgovor").val("");
 	$('#txtOdgovor').css("background-color","");
+	$('#kategorija').empty();
 	$.ajax(
 	{
 		url: "get_question.php",
 		type: "GET",
 		dataType : "json",
+		data: {
+			easy: level[0],
+			med: level[1],
+			hard: level[2]
+		},
 		success: function( json ) {
 			$( "#pitanje" ).html( json.tekst );
+			$('#kategorija').html(json.kategorija);
 			if (json.vrsta==1){
 				$("#odgovortext").fadeIn('fast', function() {
 				$("#txtOdgovor").focus();
@@ -78,6 +118,7 @@ function NovoPitanje ()
 }
 
 /* Postavlja tipke s odgovorima */
+
 function pripremiABCD(data)
 {
 	tocan_odgovor=data.tocan;
@@ -107,6 +148,7 @@ function pripremiABCD(data)
 }
 
 /* Provjera točnog odgovora kod unosa */
+
 function CheckTekstOdgovora(giveup=false)
 {
 	if (odgovoreno) {NovoPitanje(); return;}
@@ -128,6 +170,7 @@ function CheckTekstOdgovora(giveup=false)
 }
 
 /* Provjera točnog odgovora kod multiple choice */
+
 function CheckABCDodgovor(ovo)
 {
 	if (odgovoreno) {NovoPitanje(); return;}
