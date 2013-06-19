@@ -50,7 +50,6 @@
 						$rank++;
 					}
 					echo "</table>";
-						//echo "We do have scores!";
 					}
 					else
 						echo "We do not have any scores yet!";

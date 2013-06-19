@@ -165,7 +165,7 @@ function CheckTekstOdgovora(giveup=false)
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
 		if (tocni_odgovori[i]==$("input[id=txtOdgovor]").val()){
-			$('#txtOdgovor').css("background-color","green");
+			$('#txtOdgovor').css("background-color","#AFFFAF");
 			ReportOdgovor(true);
 			$ ( '#tocno' ).fadeIn();
 			odgovoreno=true;
@@ -175,7 +175,7 @@ function CheckTekstOdgovora(giveup=false)
 	{
 		odgovoreno=true;
 		ReportOdgovor(false);
-		$('#txtOdgovor').css("background-color","red");
+		$('#txtOdgovor').css("background-color","#FF9393");
 		$ ( '#krivo' ).fadeIn();
 	}
 }
@@ -189,13 +189,13 @@ function CheckABCDodgovor(ovo)
 	if ( $(ovo).data("id")==tocan_odgovor)
 	{
 		ReportOdgovor(true);
-		$(ovo).css("background-color","green");
+		$(ovo).css("background-color","#AFFFAF");
 		$ ( '#tocno' ).fadeIn();
 	}
 	else
 	{
 		ReportOdgovor(false);
-		$(ovo).css("background-color","red");
+		$(ovo).css("background-color","#FF9393");
 		$ ( '#krivo' ).fadeIn();
 	}
 
