@@ -13,6 +13,7 @@
 		$odgovor_d=$_POST['odgovor_d'];
 		$bodovi=$_POST['bodovi'];
 		$vrsta=$_POST['select'];
+		$kategorija=$_POST['kategorije'];
 		$jezik="hr";
 
 		db_connect();
@@ -27,19 +28,13 @@
 			if($vrsta=="0"){
 				//provjera da li su svi textboxi puni
 				if(empty($_POST['tekst_pitanja']) || empty($_POST['odgovor_a']) || empty($_POST['odgovor_b']) || empty($_POST['odgovor_c']) || empty($_POST['odgovor_d']) || empty($_POST['bodovi'])) {
-					print '<script type="text/javascript">';
-					print 'alert("niste popunili sve textboxe")';
-					print '</script>';  
 				} else {
 					//provjera da li su checkboxi checkirani, upisivanje pitanja i odg u bazu
 					if(empty ($_POST['tocan_a']) && empty($_POST['tocan_b']) && empty($_POST['tocan_c']) && empty($_POST['tocan_d'])) {
-						print '<script type="text/javascript">';
-						print 'alert("niste odabrali nijedan odgovor")';
-						print '</script>';  
 					} else {
 						mysqli_query($mysqli, "INSERT INTO `pitanje` (`tekst_pitanja`, `vrsta_pitanja`, `bodovi_pitanja`, `jezik_pitanja`, `id_autor`) VALUES ('$tekst', '$vrsta', '$bodovi', '$jezik', '$autor');");
 						$id=mysqli_insert_id($mysqli);
-
+						mysqli_query($mysqli, "INSERT INTO `pitanje_kategorija` VALUES ('$id', '$kategorija');");
 						$tocan=1;
 						if (empty($_POST['tocan_a'])) {
 							$tocan=0;   
@@ -67,29 +62,21 @@
 				}
 			} else if($vrsta=="1") {
 				if(empty($_POST['tekst_pitanja']) || empty($_POST['odgovor_a']) || empty($_POST['bodovi'])) {
-					print '<script type="text/javascript">';
-					print 'alert("niste popunili sve textboxe")';
-					print '</script>';  
 				} else {
 					mysqli_query($mysqli, "INSERT INTO `pitanje` (`tekst_pitanja`, `vrsta_pitanja`, `bodovi_pitanja`, `jezik_pitanja`, `id_autor`) VALUES ('$tekst', '$vrsta', '$bodovi', '$jezik', '$autor');");
 					$id=mysqli_insert_id($mysqli);
+					mysqli_query($mysqli, "INSERT INTO `pitanje_kategorija` VALUES ('$id', '$kategorija');");
 					mysqli_query($mysqli, "INSERT INTO `odgovor` (`tekst_odgovor`, `id_pitanje`) VALUES ('$odgovor_a', '$id');"); 
 				}
 
 			} else if ($vrsta=="2") {
 				if(empty($_POST['tekst_pitanja']) || empty($_POST['odgovor_a']) || empty($_POST['odgovor_b']) || empty($_POST['bodovi'])) {
-					print '<script type="text/javascript">';
-					print 'alert("niste popunili sve textboxe")';
-					print '</script>';  
 				} else {
 					if(empty ($_POST['tocan_a']) && empty($_POST['tocan_b'])) {
-						print '<script type="text/javascript">';
-						print 'alert("niste odabrali nijedan odgovor")';
-						print '</script>';  
 					} else {
-						mysqli_query($mysqli, "INSERT INTO `pitanje` (`tekst_pitanja`, `vrsta_pitanja`, `bodovi_pitanja`, `jezik_pitanja`, `id_autor`) VALUES ('$tekst', '$vrsta', '$bodovi', '$jezik', '$autor');");
+						mysqli_query($mysqli, "INSERT INTO `pitanje` (`tekst_pitanja`, `vrsta_pitanja`, `bodovi_pitanja`, `jezik_pitanja`, `id_autor`) VALUES ('$tekst', '0', '$bodovi', '$jezik', '$autor');");
 						$id=mysqli_insert_id($mysqli);
-					
+						mysqli_query($mysqli, "INSERT INTO `pitanje_kategorija` VALUES ('$id', '$kategorija');");
 						$tocan=1;
 						if(empty($_POST['tocan_a'])) {
 							$tocan=0;
@@ -103,87 +90,9 @@
 						mysqli_query($mysqli, "INSERT INTO `odgovor` (`tekst_odgovor`, `tocan_odgovor`, `id_pitanje`) VALUES ('$odgovor_b', '$tocan', '$id');");
 					} 	
 				}			
-			} else {
-				print '<script type="text/javascript">';
-				print 'alert("niste popunili sve textboxe")';
-				print '</script>'; 
-			}
-		} else {
-			print '<script type="text/javascript">';
-			print 'alert("You are not logged in!")';
-			print '</script>';
+			}header('Location: profile.php');
+		} 
 		}
 
 	db_disconnect();
-	}
-
-echo <<<END
-	<script language="javascript" type="text/javascript">
-	function checkvalue(val) {
-		if(val=="1") {
-			document.getElementById("potvrdi").style.display = "inline";
-			document.getElementById("pitanje").style.display = "inline";
-			document.getElementById("a").style.display = "inline";
-			document.getElementById("pokazi_a").style.display = "none";
-			document.getElementById("pokazi_b").style.display = "none";
-			document.getElementById("checkbox_a").style.display = "none";
-			document.getElementById("b").style.display="none";
-			document.getElementById("c").style.display = "none";
-			document.getElementById("d").style.display = "none";
-		} else if(val=="0") {
-			document.getElementById("potvrdi").style.display = "inline";
-			document.getElementById("pitanje").style.display = "inline";
-			document.getElementById("checkbox_a").style.display = "inline";
-			document.getElementById("pokazi_a").style.display = "inline";
-			document.getElementById("a").style.display = "inline";
-			document.getElementById("b").style.display = "inline";
-			document.getElementById("c").style.display = "inline";
-			document.getElementById("d").style.display = "inline";
-			document.getElementById("pokazi_b").style.display = "inline";
-		} else if(val=="2") {
-			document.getElementById("potvrdi").style.display = "inline";
-			document.getElementById("pitanje").style.display = "inline";
-			document.getElementById("a").style.display = "inline";
-			document.getElementById("checkbox_a").style.display = "inline";
-			document.getElementById("pokazi_a").style.display = "none";
-			document.getElementById("pokazi_b").style.display = "none";
-			document.getElementById("b").style.display = "inline";
-			document.getElementById("c").style.display = "none";
-			document.getElementById("d").style.display = "none";
-		}
-	}
-	</script>
-
-	<form action="add_question.php" method="POST">
-	<select name="select" onchange='checkvalue(this.value)' onChange="javascript:changeCheckboxState(this);">
-		<option value="default" disabled="disabled" selected="selected">Select</option>
-		<option value="0">Multiple choice</option>
-		<option value="1">Answer entry</option>
-		<option value="2">True / False</option>
-	</select>
-	<div id="pitanje" style="display: none;">
-		<p>Question: <input type="text" id="tekst_pitanja" name="tekst_pitanja" maxlength="100">
-		Points: <input type="text" name="bodovi"></p>
-	</div>
-	<div id="a" style="display: none;">
-		<p><span id="pokazi_a">A: </span><input type="text" id="odgovor_a" name="odgovor_a" maxlegth="45">
-		<input type="checkbox" id="checkbox_a" name="tocan_a"></p>
-	</div>
-	<div id="b" style="display: none;">
-		<p><span id="pokazi_b">B: </span><input type="text" id="odgovor_b" name="odgovor_b" maxlegth="45">
-		<input type="checkbox" name="tocan_b"></p>
-	</div>
-	<div id="c" style="display: none;">
-		<p>C: <input type="text" id="odgovor_c" name="odgovor_c" maxlegth="45">
-		<input type="checkbox" name="tocan_c"></p>
-	</div>
-	<div id="d" style="display: none;">
-		<p>D: <input type="text" id="odgovor_d" name="odgovor_d" maxlegth="45">
-		<input type="checkbox" name="tocan_d"></p>
-	</div>
-	<div id="potvrdi" style="display: none;">
-		<p><input type="submit" value="Submit"></p>
-	</div>
-	</form> 
-END;
 ?>

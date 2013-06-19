@@ -66,7 +66,7 @@ END;
 	</div>
 	<script type="text/javascript"> 
  		$("#AddQuestion").click(function(){
- 			$("#loadingDiv").load('add_question.php');
+ 			$("#loadingDiv").load('suggest_question.php');
  		});
  	</script>
  	<?php include_once 'chatbar.php'; ?>

@@ -209,7 +209,8 @@ function ReportOdgovor(tocno)
 		data:
 		{
 			id:id_pitanja,
-			odgovor: tocno
+			odgovor: tocno,
+			mode: gamemode
 		},
 		 complete: function( xhr, status ) {
 console.log(xhr.responseText);
