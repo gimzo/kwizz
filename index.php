@@ -23,14 +23,9 @@
 		<?php include_once 'statusbar.php'; ?>
 		<div id="content">
 			<div id="leftContent">
-				<p>Category</p>
+				<p>Scores</p>
 				<div class="hr1"></div>
-				<ul>
-					<li>Category 1</li>
-					<li>Catefory 2</li>
-					<li>Catefory 3</li>
-					<li>Catefory 4</li>
-				</ul>
+				<h1>Score: <?php include("myscore.php"); ?> </h1>
 			</div>
 			<div id="mainContent">
 				<p class="horCenter" style="color: #275f88;">Game</p>

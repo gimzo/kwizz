@@ -30,10 +30,9 @@
 				<p>Menu</p>
 				<div class="hr1"></div>
 				<ul>
-					<li>Check stats</li>
+					<li><a href="index.php">Check stats</a></li>
 					<li><a id="AddQuestion">Suggest question</a></li>
-					<li>Change nickname</li>
-					<li>Reset stats</li>
+					<li><a href="dropscore.php">Reset stats</a></li>
 				</ul>
 				<?php
 				db_connect();
