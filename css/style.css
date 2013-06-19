@@ -372,3 +372,8 @@ img {
 .right {
 	text-align: right;
 }
+
+.scoreboard {
+	text-align: center;
+	padding: 10px;
+}

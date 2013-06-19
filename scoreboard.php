@@ -39,10 +39,19 @@
 					<?php
 					db_connect();
 
-					$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat WHERE id_mode=0 ORDER BY rezultat DESC;");
+					$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
 
-					if ($rezultat->num_rows > 0)
-						echo "We do have scores!";
+					if ($rezultat->num_rows > 0){
+					echo "<table class='scoreboard'><tr><th>Rank</th><th>Player</th><th>Score</th></tr>";
+					$rank=1;
+					while ($data=mysqli_fetch_array($rezultat))
+					{
+						echo "<tr><td>$rank.</td><td>$data[nadimak_korisnik]</td><td>$data[rezultat]</td></tr>";
+						$rank++;
+					}
+					echo "</table>";
+						//echo "We do have scores!";
+					}
 					else
 						echo "We do not have any scores yet!";
 					db_disconnect();
