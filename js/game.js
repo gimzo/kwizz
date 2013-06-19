@@ -20,8 +20,8 @@ function setMode(b)
 	else if (mode=="FFA"){
 		gamemode="FFA";
 	}
-	$('#FFA').css("background-color",(gamemode=="FFA")?"#cccccc":"#275f88");
-	$('#CHA').css("background-color",(gamemode=="CHA")?"#cccccc":"#275f88");
+	$('#FFA').css("background-color",(gamemode=="FFA")?"#222222":"#275f88");
+	$('#CHA').css("background-color",(gamemode=="CHA")?"#222222":"#275f88");
 }
 
 function setLevel(b)
@@ -38,9 +38,9 @@ function setLevel(b)
 				level[2]=!level[2];
 				break;
 		}
-		$('#easy').css("background-color",level[0]?"#cccccc":"#275f88");
-		$ ('#med').css("background-color",level[1]?"#cccccc":"#275f88");
-		$('#hard').css("background-color",level[2]?"#cccccc":"#275f88");
+		$('#easy').css("background-color",level[0]?"#222222":"#275f88");
+		$ ('#med').css("background-color",level[1]?"#222222":"#275f88");
+		$('#hard').css("background-color",level[2]?"#222222":"#275f88");
 }
 
 /* Prikaz kategorija */

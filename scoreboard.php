@@ -42,7 +42,7 @@
 					$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
 
 					if ($rezultat->num_rows > 0){
-					echo "<table class='scoreboard'><tr><th>Rank</th><th>Player</th><th>Score</th></tr>";
+					echo "<table align='center' cellspacing='10' class='scoreboard'><tr><th>Rank</th><th>Player</th><th>Score</th></tr>";
 					$rank=1;
 					while ($data=mysqli_fetch_array($rezultat))
 					{

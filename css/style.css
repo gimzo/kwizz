@@ -330,30 +330,25 @@ img {
 .rbotun {
 	text-align: center;
 	background-color: #275f88;
-	color: #eeddcc;
-	border: 4px solid #444488;
-	margin: 0 20px 0 20px;
-	padding: 2px 4px 2px 4px;
-	float left;
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px 20px 10px 20px;
 }
 
 .rbotun:hover {
-	background-color: #d8a077;
+	background-color: #3172A0;
 }
 
 .botun {
 	text-align: center;
 	background-color: #222222;
-	color: #eeddcc;
-	border: 4px solid #000000;
-	margin: 80px 20px 20px 20px;
-	padding: 2px 4px 2px 4px;
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px 20px 10px 20px;
 }
 
 .botun:hover {
-	background-color: #aaaaaa;
-	border: 4px solid #ffffff;
-	color: #cceedd;
+	background-color: #494949;
 }
 
 #kategorija {
@@ -385,5 +380,12 @@ img {
 
 .scoreboard {
 	text-align: center;
-	padding: 10px;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.scoreboard th{
+	color: #275F88;
 }
