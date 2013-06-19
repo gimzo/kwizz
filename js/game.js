@@ -4,6 +4,7 @@ function StartGame()
 {
 	gamemode="FFA";
 	level=new Array(true,true,true);
+	catlist=new Array();
 	$("#startgame").fadeIn();
 }
 
@@ -47,29 +48,38 @@ function setLevel(b)
 function Kategorije()
 {
 	$('#window_kategorija').empty();
-	console.log("vani smo");
 	$.ajax(
 	{
 		url: 'get_tlc.php',
 		type: 'GET',
 		dataType: 'json',
 		success: function(json){
-			console.log("nutra smo");
 			for(var i in json) {
 				if(json.hasOwnProperty(i) && !isNaN(+i)) {
-					$('#window_kategorija').append('<input type="checkbox" value="'+i+'"/>'+json[i]+' ');
+					$('#window_kategorija').append('<input type="checkbox" value="'+i+'" onclick=KatCheck(this) /> '+json[i]+' &nbsp;');
 				}
 		}
-		$('#window_kategorija').append('<p class="right"><a href="#" onclick="KatClose()">Zatvori</a></p>');
+		$('#window_kategorija').append('<p class="right"><a href="#" onclick="KatClose()">Close</a></p>');
 		$('#window_kategorija').fadeIn();
 	}
 	}
 	);
 }
 
+function KatCheck(b)
+{	
+	if ($(b).is(':checked'))
+	{
+		catlist.push($(b).val());
+	}else{
+		catlist.splice(catlist.indexOf($(b).val()),1);
+	}
+}
+
 function KatClose()
 {
 	$('#window_kategorija').fadeOut();
+	$('#window_kategorija').empty();
 }
 
 /* Izvlači iz baze novo pitanje */
@@ -92,11 +102,13 @@ function NovoPitanje ()
 		data: {
 			easy: level[0],
 			med: level[1],
-			hard: level[2]
+			hard: level[2],
+			kategorije: catlist
 		},
 		success: function( json ) {
 			$( "#pitanje" ).html( json.tekst );
 			$('#kategorija').html(json.kategorija);
+			id_pitanja=json.id;
 			if (json.vrsta==1){
 				$("#odgovortext").fadeIn('fast', function() {
 				$("#txtOdgovor").focus();
@@ -110,7 +122,6 @@ function NovoPitanje ()
 			}else{
 				pripremiABCD(json);
 				$("#odgovorabcd").fadeIn();
-				console.log("ready!");
 			}
 		},
 	}
@@ -131,7 +142,6 @@ function pripremiABCD(data)
 	
 	for (var i in odgovori)
 	{
-		console.log(odgovori[i]);
 		
 		var button=$("<p>",
 		{
@@ -156,7 +166,7 @@ function CheckTekstOdgovora(giveup=false)
 	{
 		if (tocni_odgovori[i]==$("input[id=txtOdgovor]").val()){
 			$('#txtOdgovor').css("background-color","green");
-			//$('#txtOdgovor').attr('disabled','disabled');
+			ReportOdgovor(true);
 			$ ( '#tocno' ).fadeIn();
 			odgovoreno=true;
 		}
@@ -164,6 +174,7 @@ function CheckTekstOdgovora(giveup=false)
 	if (giveup)
 	{
 		odgovoreno=true;
+		ReportOdgovor(false);
 		$('#txtOdgovor').css("background-color","red");
 		$ ( '#krivo' ).fadeIn();
 	}
@@ -177,13 +188,31 @@ function CheckABCDodgovor(ovo)
 	odgovoreno=true;
 	if ( $(ovo).data("id")==tocan_odgovor)
 	{
+		ReportOdgovor(true);
 		$(ovo).css("background-color","green");
 		$ ( '#tocno' ).fadeIn();
 	}
 	else
 	{
+		ReportOdgovor(false);
 		$(ovo).css("background-color","red");
 		$ ( '#krivo' ).fadeIn();
 	}
 
+}
+
+function ReportOdgovor(tocno)
+{
+	$.ajax({
+		url: "odgovor.php",
+		type: "POST",
+		data:
+		{
+			id:id_pitanja,
+			odgovor: tocno
+		},
+		 complete: function( xhr, status ) {
+console.log(xhr.responseText);
+}
+		});
 }
