@@ -6,7 +6,8 @@
 }
 
 html {
-	background-color: #F6F2FF;
+	background-image: url('../images/bg.png');
+	/*background-color: #F6F2FF;*/
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #333;
 }
@@ -376,6 +377,7 @@ img {
 
 .right {
 	text-align: right;
+	margin-top: 60px;
 }
 
 .scoreboard {

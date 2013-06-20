@@ -6,19 +6,26 @@ function StartGame()
 	level=new Array(true,true,true);
 	catlist=new Array();
 	$("#startgame").fadeIn();
+	trenscore=0;
+	$("#trenscore").html('Current: 0');
+	$("#total").load('myscore.php');
+	setMode(false);
+	setLevel(false);
 }
 
 /* Funkcije za odabir opcija botunima */
 
 function setMode(b)
 {
-	var mode=$(b).attr("id");
+	if (b){
+		var mode=$(b).attr("id");
 
-	if (mode=="CHA"){
-		gamemode="CHA";
+		if (mode=="CHA"){
+			gamemode="CHA";
+		}
+		else if (mode=="FFA"){
+			gamemode="FFA";
 	}
-	else if (mode=="FFA"){
-		gamemode="FFA";
 	}
 	$('#FFA').css("background-color",(gamemode=="FFA")?"#222222":"#275f88");
 	$('#CHA').css("background-color",(gamemode=="CHA")?"#222222":"#275f88");
@@ -26,6 +33,7 @@ function setMode(b)
 
 function setLevel(b)
 {
+	if (b){
 		switch($(b).attr("id"))
 		{
 			case "easy":
@@ -38,6 +46,7 @@ function setLevel(b)
 				level[2]=!level[2];
 				break;
 		}
+	}
 		$('#easy').css("background-color",level[0]?"#222222":"#275f88");
 		$ ('#med').css("background-color",level[1]?"#222222":"#275f88");
 		$('#hard').css("background-color",level[2]?"#222222":"#275f88");
@@ -110,6 +119,7 @@ function NovoPitanje ()
 			$('#kategorija').html(json.kategorija);
 			$('#kategorija').append(" "+json.bodovi+" points");
 			id_pitanja=json.id;
+			bodovi_pitanja=parseInt(json.bodovi);
 			if (json.vrsta==1){
 				$("#odgovortext").fadeIn('fast', function() {
 				$("#txtOdgovor").focus();
@@ -214,4 +224,7 @@ function ReportOdgovor(tocno)
 			mode: gamemode
 		}
 		});
+	if (tocno)trenscore+=bodovi_pitanja;
+	$('#trenscore').html('Current: '+trenscore);
+	$('#total').load('myscore.php');
 }
