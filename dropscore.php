@@ -13,5 +13,6 @@
 	$autor=$data['id_korisnik'];
 	$rezultat=mysqli_query($mysqli,"DELETE FROM rezultat WHERE id_korisnik=$autor;");
 	db_disconnect();
+	header('Location: profile.php');
 
 ?>

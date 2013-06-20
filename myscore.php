@@ -3,7 +3,7 @@
 	include_once 'config.php';
 
 	if (!isset($_SESSION['user'])) {
-		header('Location: index.php');
+		die();
 	}
 	$user=$_SESSION['user'];
 	db_connect();
@@ -14,6 +14,6 @@
 	db_disconnect();
 	if ($rezultat->num_rows > 0){
 	$data=mysqli_fetch_array($rezultat);
-	echo $data['rezultat'];
-}
+	echo intval($data['rezultat']);
+}else echo 0;
 ?>

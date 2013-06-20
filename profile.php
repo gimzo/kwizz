@@ -22,6 +22,7 @@
 		<div id="menu">
 			<ul>
 				<li><a href="index.php">Start playing</a></li>
+				<li><a href="scoreboard.php">Scoreboard</a></li>
 			</ul>
 		</div>
 		<?php include_once 'statusbar.php'; ?>

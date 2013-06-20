@@ -30,6 +30,9 @@
 				<p>Menu</p>
 				<div class="hr1"></div>
 				<ul>
+					<li><a href="index.php">Check stats</a></li>
+					<li><a id="AddQuestion">Suggest question</a></li>
+					<li><a href="dropscore.php">Reset stats</a></li>
 				</ul>
 			</div>
 			<div id="mainContent">

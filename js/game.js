@@ -108,6 +108,7 @@ function NovoPitanje ()
 		success: function( json ) {
 			$( "#pitanje" ).html( json.tekst );
 			$('#kategorija').html(json.kategorija);
+			$('#kategorija').append(" "+json.bodovi+" points");
 			id_pitanja=json.id;
 			if (json.vrsta==1){
 				$("#odgovortext").fadeIn('fast', function() {
@@ -164,7 +165,7 @@ function CheckTekstOdgovora(giveup=false)
 	if (odgovoreno) {NovoPitanje(); return;}
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
-		if (tocni_odgovori[i]==$("input[id=txtOdgovor]").val()){
+		if (tocni_odgovori[i].toLowerCase()==$("input[id=txtOdgovor]").val().toLowerCase()){
 			$('#txtOdgovor').css("background-color","#AFFFAF");
 			ReportOdgovor(true);
 			$ ( '#tocno' ).fadeIn();
@@ -211,9 +212,6 @@ function ReportOdgovor(tocno)
 			id:id_pitanja,
 			odgovor: tocno,
 			mode: gamemode
-		},
-		 complete: function( xhr, status ) {
-console.log(xhr.responseText);
-}
+		}
 		});
 }
