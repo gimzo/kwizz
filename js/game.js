@@ -96,7 +96,7 @@ function KatClose()
 function NovoPitanje ()
 {
 	$(".gamescreen").hide();
-	odgovoreno=false;
+	odgovoreno;
 	$("#odgovorabcd").empty();
 	$(".popup").hide();
 	$(".odgovor").hide();
