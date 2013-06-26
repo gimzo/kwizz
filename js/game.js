@@ -96,7 +96,7 @@ function KatClose()
 function NovoPitanje ()
 {
 	$(".gamescreen").hide();
-	odgovoreno;
+	odgovoreno=false;
 	$("#odgovorabcd").empty();
 	$(".popup").hide();
 	$(".odgovor").hide();
@@ -170,7 +170,7 @@ function pripremiABCD(data)
 
 /* Provjera točnog odgovora kod unosa */
 
-function CheckTekstOdgovora(giveup=false)
+function CheckTekstOdgovora(giveup)
 {
 	if (odgovoreno) {NovoPitanje(); return;}
 	for (var i=0;i<tocni_odgovori.length;i++)
