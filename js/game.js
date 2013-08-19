@@ -2,13 +2,18 @@
 
 function StartGame()
 {
-	gamemode="FFA";
-	level=new Array(true,true,true);
+	trenscore=0;
+	gamemode="FFA";	
+	level=new Array(true,false,false);
 	catlist=new Array();
 	$("#startgame").fadeIn();
-	trenscore=0;
-	$("#trenscore").html('Current: 0');
+	$("#trenscore").html('0');
 	$("#total").load('myscore.php');
+	$('#endgame').hide();
+	$('#kategorija').hide();
+	$('#pitanje').hide();
+	$('#odgovorabcd').hide();
+	$('#odgovortext').hide();
 	setMode(false);
 	setLevel(false);
 }
@@ -25,10 +30,16 @@ function setMode(b)
 		}
 		else if (mode=="FFA"){
 			gamemode="FFA";
+		}
 	}
+
+	if (gamemode=="FFA") {
+		$('#FFA').removeClass('btn-default').addClass('btn-primary');
+		$('#CHA').removeClass('btn-primary').addClass('btn-default');
+	} else if (gamemode=="CHA") {
+		$('#CHA').removeClass('btn-default').addClass('btn-primary');
+		$('#FFA').removeClass('btn-primary').addClass('btn-default');
 	}
-	$('#FFA').css("background-color",(gamemode=="FFA")?"#222222":"#275f88");
-	$('#CHA').css("background-color",(gamemode=="CHA")?"#222222":"#275f88");
 }
 
 function setLevel(b)
@@ -37,19 +48,34 @@ function setLevel(b)
 		switch($(b).attr("id"))
 		{
 			case "easy":
-				level[0]=!level[0];
-				break;
+			level[0]=!level[0];
+			break;
 			case "med":
-				level[1]=!level[1];
-				break;
+			level[1]=!level[1];
+			break;
 			case "hard":
-				level[2]=!level[2];
-				break;
+			level[2]=!level[2];
+			break;
 		}
 	}
-		$('#easy').css("background-color",level[0]?"#222222":"#275f88");
-		$ ('#med').css("background-color",level[1]?"#222222":"#275f88");
-		$('#hard').css("background-color",level[2]?"#222222":"#275f88");
+
+	if (level[0]) {
+		$('#easy').removeClass('btn-default').addClass('btn-info');
+	} else {
+		$('#easy').removeClass('btn-info').addClass('btn-default');
+	}
+
+	if (level[1]) {
+		$('#med').removeClass('btn-default').addClass('btn-warning');
+	} else {
+		$('#med').removeClass('btn-warning').addClass('btn-default');
+	}
+
+	if (level[2]) {
+		$('#hard').removeClass('btn-default').addClass('btn-danger');
+	} else {
+		$('#hard').removeClass('btn-danger').addClass('btn-default');
+	}
 }
 
 /* Prikaz kategorija */
@@ -65,12 +91,10 @@ function Kategorije()
 		success: function(json){
 			for(var i in json) {
 				if(json.hasOwnProperty(i) && !isNaN(+i)) {
-					$('#window_kategorija').append('<input type="checkbox" value="'+i+'" onclick=KatCheck(this) /> '+json[i]+' &nbsp;');
+					$('#window_kategorija').append('<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1" value="'+i+'" onclick=KatCheck(this)>'+json[i]+'</label>');
 				}
+			}
 		}
-		$('#window_kategorija').append('<p class="right"><a href="#" onclick="KatClose()">Close</a></p>');
-		$('#window_kategorija').fadeIn();
-	}
 	}
 	);
 }
@@ -85,12 +109,6 @@ function KatCheck(b)
 	}
 }
 
-function KatClose()
-{
-	$('#window_kategorija').fadeOut();
-	$('#window_kategorija').empty();
-}
-
 /* Izvlači iz baze novo pitanje */
 
 function NovoPitanje ()
@@ -98,11 +116,14 @@ function NovoPitanje ()
 	$(".gamescreen").hide();
 	odgovoreno=false;
 	$("#odgovorabcd").empty();
-	$(".popup").hide();
 	$(".odgovor").hide();
 	$("#txtOdgovor").val("");
 	$('#txtOdgovor').css("background-color","");
+	$('#kategorija').css('margin-bottom','20px');
 	$('#kategorija').empty();
+	$('#kategorija').show();
+	$('#pitanje').show();
+
 	$.ajax(
 	{
 		url: "get_question.php",
@@ -117,18 +138,18 @@ function NovoPitanje ()
 		success: function( json ) {
 			$( "#pitanje" ).html( json.tekst );
 			$('#kategorija').html(json.kategorija);
-			$('#kategorija').append(" "+json.bodovi+" points");
+			$('#kategorija').append(" <span class='badge'>"+json.bodovi+"</span> points");
 			id_pitanja=json.id;
 			bodovi_pitanja=parseInt(json.bodovi);
 			if (json.vrsta==1){
 				$("#odgovortext").fadeIn('fast', function() {
-				$("#txtOdgovor").focus();
-				tocni_odgovori=[];
-				for(var i in json.odgovori) {
-					if(json.odgovori.hasOwnProperty(i) && !isNaN(+i)) {
-					tocni_odgovori.push(json.odgovori[i]);
-				}
-}
+					$("#txtOdgovor").focus();
+					tocni_odgovori=[];
+					for(var i in json.odgovori) {
+						if(json.odgovori.hasOwnProperty(i) && !isNaN(+i)) {
+							tocni_odgovori.push(json.odgovori[i]);
+						}
+					}
 				});
 			}else{
 				pripremiABCD(json);
@@ -147,17 +168,17 @@ function pripremiABCD(data)
 	var odgovori=[];
 	for(var i in data.odgovori) {
 		if(data.odgovori.hasOwnProperty(i) && !isNaN(+i)) {
-		odgovori[i]=data.odgovori[i];
+			odgovori[i]=data.odgovori[i];
 		}
 	}
 	
 	for (var i in odgovori)
 	{
 		
-		var button=$("<p>",
+		var button=$("<span>",
 		{
 			html: odgovori[i],
-			"class": "btnOdg",
+			"class": "btn btn-default btn-block",
 			onclick: "CheckABCDodgovor(this)"
 		}
 		);
@@ -176,18 +197,18 @@ function CheckTekstOdgovora(giveup)
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
 		if (tocni_odgovori[i].toLowerCase()==$("input[id=txtOdgovor]").val().toLowerCase()){
-			$('#txtOdgovor').css("background-color","#AFFFAF");
+			$('#txtOdgovor').css("background-color","rgb(92, 184, 92)");
 			ReportOdgovor(true);
-			$ ( '#tocno' ).fadeIn();
 			odgovoreno=true;
+			NovoPitanjeTimeout();
 		}
 	}
 	if (giveup)
 	{
 		odgovoreno=true;
 		ReportOdgovor(false);
-		$('#txtOdgovor').css("background-color","#FF9393");
-		$ ( '#krivo' ).fadeIn();
+		$('#txtOdgovor').css("background-color","rgb(217, 83, 79)");
+		NovoPitanjeTimeout();
 	}
 }
 
@@ -200,14 +221,14 @@ function CheckABCDodgovor(ovo)
 	if ( $(ovo).data("id")==tocan_odgovor)
 	{
 		ReportOdgovor(true);
-		$(ovo).css("background-color","#AFFFAF");
-		$ ( '#tocno' ).fadeIn();
+		$(ovo).removeClass('btn-default').addClass('btn-success');
+		NovoPitanjeTimeout();
 	}
 	else
 	{
 		ReportOdgovor(false);
-		$(ovo).css("background-color","#FF9393");
-		$ ( '#krivo' ).fadeIn();
+		$(ovo).removeClass('btn-default').addClass('btn-danger');
+		NovoPitanjeTimeout();
 	}
 
 }
@@ -223,8 +244,14 @@ function ReportOdgovor(tocno)
 			odgovor: tocno,
 			mode: gamemode
 		}
-		});
+	});
 	if (tocno)trenscore+=bodovi_pitanja;
-	$('#trenscore').html('Current: '+trenscore);
+	$('#trenscore').html(trenscore);
 	$('#total').load('myscore.php');
+}
+
+function NovoPitanjeTimeout() {
+	setTimeout(function(){
+		NovoPitanje();
+	}, 2000);
 }

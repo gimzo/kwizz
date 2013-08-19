@@ -1,37 +1,59 @@
-<div id="kategorija"></div>
-<div id="pitanje"></div>
-<div id="odgovorabcd" class="odgovor"></div>
-<div id="odgovortext" class="odgovor">
-	<input type="text" id="txtOdgovor" onkeyup="CheckTekstOdgovora()">
-	<button type="button" id="neznam" onclick="CheckTekstOdgovora(true)">I don't know!</button>
-</div>
-<div id="tocno" name="tocno" class="popup">
-	<p>Correct answer!</p>
-</div>
-<div id="krivo" name="krivo" class="popup">
-	<p>Incorrect answer!</p>
-</div>
-<div id="startgame" class="gamescreen">
+<!-- Sucelje -->
+<div id="startgame" class="gamescreen text-center">
 	<div>
-		<p style="margin-bottom: 30px;">Select Mode:</p>
-		<span class="rbotun" id="FFA" onclick="setMode(this)">Free For All</span>
-		<span class="rbotun" id="CHA" onclick="setMode(this)">Challenge</span>
+		<h5>Select Mode:</h5>
+		<span class="btn btn-default" id="FFA" onclick="setMode(this)">Free For All</span>
+		<span class="btn btn-default" id="CHA" onclick="setMode(this)">Challenge</span>
 	</div>
-	<div id="kat" style="margin-top: 30px;">
-		<a href='#' style="text-decoration: none; color: #275f88;" onclick="Kategorije()">Categories</a>
+	<div class="hr"></div>
+	<div id="kat">
+		<h5>Select Category:</h5>
+		<a data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Odabir Kategorije</a>
 	</div>
-	<div style="margin-top: 20px;">
-		<p style="margin-bottom: 30px;">Select Difficulty:</p>
-		<span class="rbotun"id="easy" onclick="setLevel(this)">Easy</span>
-		<span class="rbotun"id="med" onclick="setLevel(this)">Medium</span>
-		<span class="rbotun"id="hard" onclick="setLevel(this)">Hard</span>
+	<div class="hr"></div>
+	<div>
+		<h5>Select Difficulty:</h5>
+		<span class="btn btn-info" id="easy" onclick="setLevel(this)">Easy</span>
+		<span class="btn btn-warning" id="med" onclick="setLevel(this)">Medium</span>
+		<span class="btn btn-danger" id="hard" onclick="setLevel(this)">Hard</span>
 	</div>
-	<div style="margin-top: 30px;">
-		<span class="botun" onclick="NovoPitanje()">Start!</span>
+	<div class="hr"></div>
+	<div>
+		<span class="btn btn-success" onclick="NovoPitanje()">Start!</span>
 	</div>
 </div>
+<!-- Modal za kategorije -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Categories</h4>
+			</div>
+			<div id="window_kategorija" class="modal-body">
+				...
+			</div>
+		</div>
+	</div>
+</div>
+<!-- TO-DO za kraj igre -->
 <div id="endgame" class="gamescreen"></div>
-<div id="window_kategorija"></div>
+
+<!-- Prikaz kategorija -->
+<div id="kategorija"></div>
+<!-- Prikaz pitanja -->
+<div id="pitanje" class="well well-sm text-center"></div>
+<!-- Odgovori a,b,c,d -->
+<div id="odgovorabcd" class="odgovor"></div>
+<!-- Unos odgovora -->
+<div id="odgovortext" class="odgovor input-group">
+	<input type="text" id="txtOdgovor" class="form-control" onkeyup="CheckTekstOdgovora()">
+	<span class="input-group-btn">
+		<button class="btn btn-default" type="button" id="neznam" onclick="CheckTekstOdgovora(true)">I don't know!</button>
+	</span>
+</div>
+
+<!-- Pocetak igre -->
 <script>
-	$( window ).load(StartGame());
+	$(window).load(StartGame());
 </script>

@@ -33,38 +33,30 @@
 
 <!DOCTYPE html> 
 <html>
-<head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script language="javascript" type="text/javascript">
-	function go_back() {
-    window.location.href = "index.php";
-	}
-	</script>
-</head>
-<body>
-	<!-- Login forma -->
-	<div id="form">
-		<div id="formLogo"></div>
-		<div id="formContent">
-			<form action="login.php" method="post" accept-charset="UTF-8">
-			<fieldset >
-				<p>
-					<label for"nickname">Nickname:</label><br>
-					<input type="text" name="nickname" id="nickname" maxlength="20" />
-				</p>
-				<p>
-					<label for="password">Password:</label><br>
-					<input type="password" name="password" id="password" maxlength="45" />
-				</p>
-		 		<button type="button" class="floatL" onclick="go_back()">Go back</button> 
-				<input type="submit" name="Submit" value="Login" class="floatR" />
-			</fieldset>
+	<head>
+		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<div class="container">
+			<form class="col-lg-offset-4 col-lg-4" action="login.php" method="post" accept-charset="UTF-8">
+				<fieldset>
+					<legend>Login</legend>
+					<div class="form-group">
+						<label for="nickname">Nickname</label>
+						<input type="text" class="form-control" name="nickname" placeholder="Enter nickname" maxlength="20">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" name="password" placeholder="Enter password" maxlength="45">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<a href="index.php" class="btn btn-default">Cancel</a>
+				</fieldset>
 			</form>
 		</div>
-		<div class='clearBoth'></div>
-	</div>
-	<?php form_report() ?>
-</body>
+	</body>
 </html>

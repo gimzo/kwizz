@@ -10,59 +10,72 @@
 
 <!DOCTYPE html> 
 <html>
-<head>
-	<title>Scoreboard</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="js/jquery-1.9.1.min.js"></script>
-</head>
-<body>
-	<div id="wrapper">
-		<div id="header"><div id="headerLogo"><img src="./images/scoreboard.png" alt="Scoreboard" width="250" height="102"></div></div>
-		<div id="menu">
-			<ul>
-				<li><a href="index.php">Start playing</a></li>
-			</ul>
-		</div>
-		<?php include_once 'statusbar.php'; ?>
-		<div id="content">
-			<div id="leftContent">
-				<p>Menu</p>
-				<div class="hr1"></div>
-				<ul>
-					<li><a href="index.php">Check stats</a></li>
-					<li><a id="AddQuestion">Suggest question</a></li>
-					<li><a href="dropscore.php">Reset stats</a></li>
-				</ul>
-			</div>
-			<div id="mainContent">
-				<p class="horCenter" style="color: #275f88;">Scoreboard</p>
-				<div class="hr2"></div> 
-				<div id="loadingDiv">
-					<?php
-					db_connect();
+	<head>
+		<title>Scoreboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row"><img src="./images/scoreboard.png" class="img-responsive img-center" alt="Scoreboard"></div>
+			<div class="hr"></div>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Kwizz</a>
+				</div>
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="index.php">Homepage</a></li>
+						<li class="active"><a href="scoreboard.php">Scoreboard</a></li>
+					</ul>
+					<?php include_once 'loginstatus.php' ?>
+				</div>
+			</nav>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h4 class="panel-title text-center">Scoreboard</h4>
+						</div>
+						<div class="panel-body">
+							<span id="loadingDiv">
+								<?php
+								db_connect();
 
-					$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
+								$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
 
-					if ($rezultat->num_rows > 0){
-					echo "<table align='center' cellspacing='10' class='scoreboard'><tr><th>Rank</th><th>Player</th><th>Score</th></tr>";
-					$rank=1;
-					while ($data=mysqli_fetch_array($rezultat))
-					{
-						echo "<tr><td>$rank.</td><td>$data[nadimak_korisnik]</td><td>$data[rezultat]</td></tr>";
-						$rank++;
-					}
-					echo "</table>";
-					}
-					else
-						echo "We do not have any scores yet!";
-					db_disconnect();
-					?>
+								if ($rezultat->num_rows > 0){
+								echo "<table class='table table-striped text-center'><tr><th class='text-center'>Rank</th><th class='text-center'>Player</th><th class='text-center'>Score</th></tr>";
+								$rank=1;
+								while ($data=mysqli_fetch_array($rezultat))
+								{
+									echo "<tr><td>$rank.</td><td>$data[nadimak_korisnik]</td><td>$data[rezultat]</td></tr>";
+									$rank++;
+								}
+								echo "</table>";
+								}
+								else
+									echo "<p class='text-center'>We do not have any scores yet!</p>";
+								db_disconnect();
+								?>
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="clearBoth"></div>
+			<hr>
+			<div class="footer"><p>&copy; 2013</p></div>
 		</div>
-	</div>
- 	<?php include_once 'chatbar.php'; ?>
-</body>
+	</body>
 </html>
