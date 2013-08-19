@@ -121,8 +121,8 @@ function NovoPitanje ()
 	$('#txtOdgovor').css("background-color","");
 	$('#kategorija').css('margin-bottom','20px');
 	$('#kategorija').empty();
-	$('#kategorija').show();
-	$('#pitanje').show();
+	$('#kategorija').fadeIn();
+	$('#pitanje').fadeIn();
 
 	$.ajax(
 	{
@@ -185,15 +185,13 @@ function pripremiABCD(data)
 		button.data("id",i);
 		$("#odgovorabcd").append(button);
 	}	
-	
-	
 }
 
 /* Provjera točnog odgovora kod unosa */
 
 function CheckTekstOdgovora(giveup)
 {
-	if (odgovoreno) {NovoPitanje(); return;}
+	if (odgovoreno) {return;}
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
 		if (tocni_odgovori[i].toLowerCase()==$("input[id=txtOdgovor]").val().toLowerCase()){
@@ -216,7 +214,7 @@ function CheckTekstOdgovora(giveup)
 
 function CheckABCDodgovor(ovo)
 {
-	if (odgovoreno) {NovoPitanje(); return;}
+	if (odgovoreno) {return;}
 	odgovoreno=true;
 	if ( $(ovo).data("id")==tocan_odgovor)
 	{
@@ -230,7 +228,6 @@ function CheckABCDodgovor(ovo)
 		$(ovo).removeClass('btn-default').addClass('btn-danger');
 		NovoPitanjeTimeout();
 	}
-
 }
 
 function ReportOdgovor(tocno)

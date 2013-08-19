@@ -8,7 +8,7 @@
 	<div class="hr"></div>
 	<div id="kat">
 		<h5>Select Category:</h5>
-		<a data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Odabir Kategorije</a>
+		<a data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Categories</a>
 	</div>
 	<div class="hr"></div>
 	<div>
