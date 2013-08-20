@@ -2,7 +2,13 @@
 
 function StartGame()
 {
+	timer.stop();
+	$('#timer').empty();
+	countdownTime=60; // vrijeme trajanja
 	trenscore=0;
+	CHAstart=0;
+	tocniOdgovori=0;
+	brojPitanja=0;
 	gamemode="FFA";	
 	level=new Array(true,false,false);
 	catlist=new Array();
@@ -158,6 +164,11 @@ function NovoPitanje ()
 		},
 	}
 	);
+	brojPitanja++;
+	if (gamemode=='CHA' && CHAstart=='0') {
+		CHAstart=1;
+		timer.play();
+	}
 }
 
 /* Postavlja tipke s odgovorima */
@@ -198,6 +209,7 @@ function CheckTekstOdgovora(giveup)
 			$('#txtOdgovor').css("background-color","rgb(92, 184, 92)");
 			ReportOdgovor(true);
 			odgovoreno=true;
+			tocniOdgovori++;
 			NovoPitanjeTimeout();
 		}
 	}
@@ -219,6 +231,7 @@ function CheckABCDodgovor(ovo)
 	if ( $(ovo).data("id")==tocan_odgovor)
 	{
 		ReportOdgovor(true);
+		tocniOdgovori++;
 		$(ovo).removeClass('btn-default').addClass('btn-success');
 		NovoPitanjeTimeout();
 	}
@@ -252,3 +265,14 @@ function NovoPitanjeTimeout() {
 		NovoPitanje();
 	}, 2000);
 }
+
+var timer = $.timer(function() {
+	countdownTime--;
+	$('#timer').html(countdownTime+' seconds');
+	if (countdownTime==0) {
+		$('#modal_title').html('Game Over');
+		$('#window_kategorija').html('You answered correctly '+tocniOdgovori+' out of '+brojPitanja+' questions.<br>Success rate is '+(tocniOdgovori/brojPitanja)*100+'%.');
+		$('#myModal').modal('show');
+		StartGame();
+	}
+}, 1000, false);	

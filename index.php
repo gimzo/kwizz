@@ -13,6 +13,7 @@
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.timer.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/game.js"></script>
 	</head>
@@ -47,6 +48,7 @@
 						<div class="panel-body">
 							<p>Total: <span id="total"></span></p>
 							<p class="text-success">Current Score: <span id="trenscore"></span></p>
+							<p>Time left: <span id="timer"></span></p>
 						</div>
 					</div>
 				</div>
