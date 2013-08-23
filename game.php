@@ -1,25 +1,31 @@
+<button id="menu_btn" type="button" class="btn btn-default" onclick="StartGame()">
+	<span class="glyphicon glyphicon-align-center"></span> Main Menu
+</button>
+<span id="timer" class="pull-right"></span>
+<hr>
+
 <!-- Sucelje -->
 <div id="startgame" class="gamescreen text-center">
 	<div>
 		<h5>Select Mode:</h5>
-		<span class="btn btn-default" id="FFA" onclick="setMode(this)">Free For All</span>
-		<span class="btn btn-default" id="CHA" onclick="setMode(this)">Challenge</span>
+		<button class="btn btn-default" id="FFA" onclick="setMode(this)">Free For All</button>
+		<button class="btn btn-default" id="CHA" onclick="setMode(this)">Challenge</button>
 	</div>
 	<div class="hr"></div>
 	<div id="kat">
 		<h5>Select Category:</h5>
-		<a data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Categories</a>
+		<button data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Categories</button>
 	</div>
 	<div class="hr"></div>
 	<div>
 		<h5>Select Difficulty:</h5>
-		<span class="btn btn-info" id="easy" onclick="setLevel(this)">Easy</span>
-		<span class="btn btn-warning" id="med" onclick="setLevel(this)">Medium</span>
-		<span class="btn btn-danger" id="hard" onclick="setLevel(this)">Hard</span>
+		<button class="btn btn-info" id="easy" onclick="setLevel(this)">Easy</button>
+		<button class="btn btn-warning" id="med" onclick="setLevel(this)">Medium</button>
+		<button class="btn btn-danger" id="hard" onclick="setLevel(this)">Hard</button>
 	</div>
 	<div class="hr"></div>
 	<div>
-		<span class="btn btn-success" onclick="NovoPitanje()">Start!</span>
+		<button class="btn btn-success" onclick="NovoPitanje()">Start!</button>
 	</div>
 </div>
 <!-- Modal za kategorije -->
@@ -28,14 +34,12 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 id='modal_title' class="modal-title">Categories</h4>
+				<h4 id='modal_title' class="modal-title text-center">Categories</h4>
 			</div>
-			<div id="window_kategorija" class="modal-body"></div>
+			<div id="window_kategorija" class="modal-body text-center"></div>
 		</div>
 	</div>
 </div>
-<!-- TO-DO za kraj igre -->
-<div id="endgame" class="gamescreen"></div>
 
 <!-- Prikaz kategorija -->
 <div id="kategorija"></div>

@@ -1,8 +1,11 @@
 /* Početni ekran i setup opcija */
 
+var pitanjeTimeout;
+var timerInterval;
+
 function StartGame()
 {
-	timer.stop();
+	TimerStop(timerInterval);
 	$('#timer').empty();
 	countdownTime=60; // vrijeme trajanja
 	trenscore=0;
@@ -20,6 +23,7 @@ function StartGame()
 	$('#pitanje').hide();
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
+	$('#menu_btn').attr('disabled','disabled');
 	setMode(false);
 	setLevel(false);
 }
@@ -119,6 +123,7 @@ function KatCheck(b)
 
 function NovoPitanje ()
 {
+	$('#menu_btn').removeAttr('disabled');
 	$(".gamescreen").hide();
 	odgovoreno=false;
 	$("#odgovorabcd").empty();
@@ -167,7 +172,7 @@ function NovoPitanje ()
 	brojPitanja++;
 	if (gamemode=='CHA' && CHAstart=='0') {
 		CHAstart=1;
-		timer.play();
+		TimerStart();
 	}
 }
 
@@ -186,7 +191,7 @@ function pripremiABCD(data)
 	for (var i in odgovori)
 	{
 		
-		var button=$("<span>",
+		var button=$("<button>",
 		{
 			html: odgovori[i],
 			"class": "btn btn-default btn-block",
@@ -206,7 +211,7 @@ function CheckTekstOdgovora(giveup)
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
 		if (tocni_odgovori[i].toLowerCase()==$("input[id=txtOdgovor]").val().toLowerCase()){
-			$('#txtOdgovor').css("background-color","rgb(92, 184, 92)");
+			$('#txtOdgovor').css("background-color","rgb(92, 184, 92)"); // TO-DO sredit boje
 			ReportOdgovor(true);
 			odgovoreno=true;
 			tocniOdgovori++;
@@ -217,7 +222,7 @@ function CheckTekstOdgovora(giveup)
 	{
 		odgovoreno=true;
 		ReportOdgovor(false);
-		$('#txtOdgovor').css("background-color","rgb(217, 83, 79)");
+		$('#txtOdgovor').css("background-color","rgb(217, 83, 79)"); // TO-DO sredit boje
 		NovoPitanjeTimeout();
 	}
 }
@@ -261,18 +266,29 @@ function ReportOdgovor(tocno)
 }
 
 function NovoPitanjeTimeout() {
-	setTimeout(function(){
+	pitanjeTimeout=setTimeout(function(){
 		NovoPitanje();
 	}, 2000);
 }
 
-var timer = $.timer(function() {
-	countdownTime--;
-	$('#timer').html(countdownTime+' seconds');
-	if (countdownTime==0) {
-		$('#modal_title').html('Game Over');
-		$('#window_kategorija').html('You answered correctly '+tocniOdgovori+' out of '+brojPitanja+' questions.<br>Success rate is '+(tocniOdgovori/brojPitanja)*100+'%.');
-		$('#myModal').modal('show');
-		StartGame();
-	}
-}, 1000, false);	
+function TimeoutStop(timeoutVar) {
+	clearTimeout(timeoutVar);
+}
+
+function TimerStart() {
+	timerInterval=setInterval(function(){
+		countdownTime--;
+		$('#timer').html('<pre>Time: <strong>'+countdownTime+'</strong> sec</pre>');
+		if (countdownTime==0) {
+			$('#modal_title').html('Game Over');
+			$('#window_kategorija').html('You answered correctly '+tocniOdgovori+' out of '+brojPitanja+' questions.<br>Success rate is '+Math.round((tocniOdgovori/brojPitanja)*100*10)/10+'%.');
+			$('#myModal').modal('show');
+			TimeoutStop(pitanjeTimeout);
+			StartGame();
+		}
+	}, 1000);
+}
+
+function TimerStop(timerVar) {
+	clearInterval(timerVar);
+}
