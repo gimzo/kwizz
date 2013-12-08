@@ -52,6 +52,16 @@
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="#" id="AddQuestion">Suggest question</a></li>
 								<li><a href="dropscore.php">Reset stats</a></li>
+								<?php
+									$user=$_SESSION['user'];
+									db_connect();
+									$query=mysqli_query($mysqli, "SELECT * FROM korisnik WHERE nadimak_korisnik='$user';");
+									$result=mysqli_fetch_array($query);
+
+									if($result['uloga_korisnik']==0) {
+										echo "<li><a href='admin.php'>Admin page</a></li>";
+									}
+								?>
 							</ul>
 						</div>
 					</div>
