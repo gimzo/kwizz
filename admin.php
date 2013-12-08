@@ -7,7 +7,15 @@
 			var inputs=document.getElementsByTagName("input");
 			for(var i=0; i<inputs.length; i++) {
 				if(inputs[i].type=="checkbox") {
-					inputs[i].checked="true";
+					inputs[i].checked=true;
+				}
+			}
+		}
+		function Deselect() {
+			var inputs=document.getElementsByTagName("input");
+			for(var i=0; i<inputs.length; i++) {
+				if(inputs[i].type=="checkbox") {
+					inputs[i].checked=false;
 				}
 			}
 		}
@@ -36,7 +44,7 @@
 		}
 
 		db_connect();
-		$result=mysqli_query($mysqli, "SELECT * FROM pitanje WHERE odobreno_pitanje=0;");
+		$result=mysqli_query($mysqli, "SELECT * FROM pitanje WHERE odobreno_pitanje=0 limit 20;");
 		echo "<form method='POST' action='admin.php'>";
 		while ($data=mysqli_fetch_array($result)) {
 			$id = $data['id_pitanje'];
@@ -57,7 +65,8 @@
 		}
 		echo "<input type='submit' value='Potvrdi' name='potvrdi'>";
 		echo "<input type='submit' value='Obrisi' name='obrisi'>";
-		echo "<input type='button' onclick='Select();' value='Select all'>";
+		echo "<input type='button' onclick='Select();' value='Oznaci sve'>";
+		echo "<input type='button' onclick='Deselect();' value='Odznaci sve'>";
 		echo "</form>";
 		db_disconnect();
 	?>
