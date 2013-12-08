@@ -51,7 +51,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="#" id="AddQuestion">Suggest question</a></li>
-								<li><a href="dropscore.php">Reset stats</a></li>
+								<li><a href="#" id="reset">Reset stats</a></li>
 								<?php
 									$user=$_SESSION['user'];
 									db_connect();
@@ -84,6 +84,12 @@
 		<script type="text/javascript"> 
 			$("#AddQuestion").click(function(){
 				$("#loadingDiv").load('suggest_question.php');
+			});
+			$("#reset").click(function() {
+				var retVal = confirm("Do you really want to reset your score?");
+				if( retVal == true ){
+					window.location.href = 'dropscore.php';
+				}
 			});
 		</script>
 	</body>
