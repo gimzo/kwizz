@@ -15,7 +15,7 @@
            			$result=mysqli_query($mysqli, "DELETE FROM pitanje WHERE id_pitanje='$check';");
             	}
     		}
-		}
+		} 
 		db_disconnect();
 	}
 	
@@ -24,7 +24,8 @@
 	echo "<form method='POST' action='admin.php'>";
 	while ($data=mysqli_fetch_array($result)) {
 		$id = $data['id_pitanje'];
-		echo "<b>".$data['tekst_pitanja']."</b><input type='checkbox' name='odobreno[]' value='".$id."'><br>";
+		echo "<b>".$data['tekst_pitanja']."</b><input type='checkbox' name='odobreno[]' value='".$id."'>";
+		echo "<a href='edit_question.php?question=".$data['id_pitanje']."'>Uredi</a><br>";
 		$odgovor=mysqli_query($mysqli, "SELECT * FROM odgovor WHERE id_pitanje='$id';");
 		$i=0;
 		while ($answer=mysqli_fetch_array($odgovor)) {
