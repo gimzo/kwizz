@@ -7,7 +7,8 @@
 	$result=mysqli_fetch_array($query);
 	echo "<form action='save_changes.php' method='GET'>";
 	echo "<input type='hidden' name='id' value='$id'>";
-	echo "<input type='text' value='".$result['tekst_pitanja']."' name='question' style='width: 300px;'><br>";
+	echo "<input type='text' value='".$result['tekst_pitanja']."' name='question' style='width: 300px;'>";
+	echo "Bodovi: <input type='text' value='".$result['bodovi_pitanja']."' name='points' style='width: 35px;'><br>";
 	$row=mysqli_query($mysqli, "SELECT * FROM odgovor WHERE id_pitanje='$id';");
 	$i=0;
 

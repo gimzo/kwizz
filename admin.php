@@ -50,6 +50,7 @@
 			$id = $data['id_pitanje'];
 			echo "<b>".$data['tekst_pitanja']."</b><input type='checkbox' name='odobreno[]' value='".$id."'>";
 			echo "<a href='edit_question.php?question=".$data['id_pitanje']."'>Uredi</a><br>";
+			echo "Bodovi:" .$data['bodovi_pitanja']."<br>";
 			$odgovor=mysqli_query($mysqli, "SELECT * FROM odgovor WHERE id_pitanje='$id';");
 			$i=0;
 			while ($answer=mysqli_fetch_array($odgovor)) {

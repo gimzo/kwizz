@@ -6,7 +6,9 @@
 		if (isset($_GET['potvrdi'])) {
 			$question=$_GET['question'];
 			$id=$_GET['id'];
-			$result=mysqli_query($mysqli, "UPDATE pitanje SET tekst_pitanja='$question' WHERE id_pitanje='$id';");
+			$points=$_GET['points'];
+			$result=mysqli_query($mysqli, "UPDATE pitanje SET tekst_pitanja='$question' where id_pitanje='$id';");
+			$result1=mysqli_query($mysqli, "UPDATE pitanje SET bodovi_pitanja='$points' where id_pitanje='$id';");
 			if (!empty($_GET['tocan']) && !empty($_GET['id_tocan'])) {
 				$tocan=$_GET['tocan'];
 				$id_tocan=$_GET['id_tocan'];
