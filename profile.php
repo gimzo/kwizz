@@ -73,6 +73,38 @@
 						</div>
 						<div class="panel-body">
 							<span id="loadingDiv"></span>
+							<?php
+								$user=$_SESSION['user'];
+								$id=$_SESSION['id'];
+								db_connect();								
+								$result=mysqli_query($mysqli, "SELECT * FROM korisnik WHERE id_korisnik='$id';");
+								$data=mysqli_fetch_array($result);
+								echo "Nickname: &nbsp;".$data['nadimak_korisnik']."<br>";
+								echo "Full name: &nbsp;".$data['ime']."<br>";
+								echo "Location: &nbsp;".$data['drzava_korisnik']."<br>";
+								echo "About me: &nbsp;".$data['about']."<br>";
+								$result = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id';");
+								$data = mysqli_fetch_array($result);
+								$result = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND tocno=1;");
+								$tocan = mysqli_fetch_array($result);
+								$postotak = round(($tocan[0]/$data[0])*100);
+								echo "Answered correctly (all categories):&nbsp;".$postotak."%<br>";
+								$result = mysqli_query($mysqli, "SELECT DISTINCT pitanje_kategorija.id_kategorija AS kategorija, kategorija.naziv_kategorija AS naziv FROM pitanje_kategorija INNER JOIN odgovorena_pitanja ON odgovorena_pitanja.id_pitanje=pitanje_kategorija.id_pitanje INNER JOIN kategorija ON kategorija.id_kategorija=pitanje_kategorija.id_kategorija;");
+								while ($data = mysqli_fetch_array($result)) {
+									echo $data['naziv'].":&nbsp;";
+									$result1 = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND id_pitanje IN (SELECT id_pitanje FROM pitanje_kategorija WHERE id_kategorija='$data[kategorija]');");
+									$ukupno = mysqli_fetch_array($result1);
+									$result2 = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND tocno=1 AND id_pitanje IN (SELECT id_pitanje FROM pitanje_kategorija WHERE id_kategorija='$data[kategorija]');");
+									$tocno = mysqli_fetch_array($result2);
+									$postkat = round(($tocno[0]/$ukupno[0])*100);
+									echo $postkat."%<br>";
+								}
+
+								echo "<a href='editProfile.php'>Edit profile</a>";
+								db_disconnect();
+							?>
+							
+
 						</div>
 					</div>
 				</div>
