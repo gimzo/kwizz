@@ -7,18 +7,16 @@
 	}
 	$user=$_SESSION['user'];
 	if (!(isset($_POST['id']) || isset($_POST['odgovor']))) die();
-	db_connect();
 	$id_odgovora=$_POST['id'];
 	
+	db_connect();
 	$odgovor=$_POST['odgovor']=="true"?true:false;
 	$result=mysqli_query($mysqli, "SELECT id_korisnik FROM korisnik WHERE nadimak_korisnik = '$user';");
 	$data=mysqli_fetch_array($result);
 	$autor=$data['id_korisnik'];
 	
-	$result=mysqli_query($mysqli, "INSERT INTO odgovorena_pitanja VALUES($autor , $id_odgovora , NOW());");
-	$result=mysqli_query($mysqli, "UPDATE korisnik SET ukupni_odgovori=(1+ukupni_odgovori) WHERE id_korisnik=$autor;");
+	$result=mysqli_query($mysqli, "INSERT INTO odgovorena_pitanja VALUES($autor , $id_odgovora , NOW(), $odgovor );");
 	if ($odgovor){
-		$result=mysqli_query($mysqli, "UPDATE korisnik SET tocni_odgovori=(1+tocni_odgovori) WHERE id_korisnik=$autor;");
 		$result=mysqli_query($mysqli, "SELECT bodovi_pitanja FROM pitanje WHERE id_pitanje = $id_odgovora;");
 		$data=mysqli_fetch_array($result);
 		$bodovi=intval($data['bodovi_pitanja']);
