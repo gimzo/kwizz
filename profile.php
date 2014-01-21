@@ -74,9 +74,38 @@
 						<div class="panel-body">
 							<span id="loadingDiv"></span>
 							<?php
-								$user=$_SESSION['user'];
-								$id=$_SESSION['id'];
-								db_connect();								
+								db_connect();
+
+								if(!empty($_GET['nickname'])) {
+									$nick=$_GET['nickname'];
+									$result=mysqli_query($mysqli, "SELECT id_korisnik AS id FROM korisnik WHERE nadimak_korisnik='$nick'");
+									$data = mysqli_fetch_array($result);
+									$id=$data[0];
+								} else{
+									$id=$_SESSION['id'];
+								}
+
+								if($id!=$_SESSION['id']) {
+									
+									$result=mysqli_query($mysqli, "SELECT * FROM lista_prijatelja WHERE id_vlasnik='$_SESSION[id]' AND id_prijatelj='$id'");
+									$data = mysqli_fetch_array($result);
+									if ($data) {
+										echo "<a href='profile.php?remove=".$id."&nickname=".$_GET['nickname']."'>Remove from friend list</a><br>";
+										//header('Location: friends.php?nickname="David"');
+									} else {
+										echo "<a href='profile.php?add=".$id."&nickname=".$_GET['nickname']."'>Add to friend list</a><br>";
+									}
+								}	
+
+								if (!empty($_GET['add']) && !empty($_GET['nickname'])) {
+									$result=mysqli_query($mysqli, "INSERT INTO lista_prijatelja VALUES('$_SESSION[id]', '$_GET[add]');");
+									header('Location: profile.php?nickname='.$_GET['nickname']);
+								}
+								if (!empty($_GET['remove']) && !empty($_GET['nickname'])) {
+									$result=mysqli_query($mysqli, "DELETE FROM lista_prijatelja WHERE id_vlasnik='$_SESSION[id]' AND id_prijatelj='$_GET[remove]';");
+									header('Location: profile.php?nickname='.$_GET['nickname']);
+								}							
+								
 								$result=mysqli_query($mysqli, "SELECT * FROM korisnik WHERE id_korisnik='$id';");
 								$data=mysqli_fetch_array($result);
 								echo "Nickname: &nbsp;".$data['nadimak_korisnik']."<br>";
@@ -85,11 +114,15 @@
 								echo "About me: &nbsp;".$data['about']."<br>";
 								$result = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id';");
 								$data = mysqli_fetch_array($result);
-								$result = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND tocno=1;");
-								$tocan = mysqli_fetch_array($result);
-								$postotak = round(($tocan[0]/$data[0])*100);
-								echo "Answered correctly (all categories):&nbsp;".$postotak."%<br>";
-								$result = mysqli_query($mysqli, "SELECT DISTINCT pitanje_kategorija.id_kategorija AS kategorija, kategorija.naziv_kategorija AS naziv FROM pitanje_kategorija INNER JOIN odgovorena_pitanja ON odgovorena_pitanja.id_pitanje=pitanje_kategorija.id_pitanje INNER JOIN kategorija ON kategorija.id_kategorija=pitanje_kategorija.id_kategorija;");
+								if($data[0]!=0) {
+									$result = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND tocno=1;");
+									$tocan = mysqli_fetch_array($result);
+									$postotak = round(($tocan[0]/$data[0])*100);
+									echo "Answered correctly (all categories):&nbsp;".$postotak."%<br>";
+								} else {
+									echo "You haven't answered any question yet.<br>";
+								}						
+								$result = mysqli_query($mysqli, "SELECT DISTINCT pitanje_kategorija.id_kategorija AS kategorija, kategorija.naziv_kategorija AS naziv FROM pitanje_kategorija INNER JOIN odgovorena_pitanja ON odgovorena_pitanja.id_pitanje=pitanje_kategorija.id_pitanje INNER JOIN kategorija ON kategorija.id_kategorija=pitanje_kategorija.id_kategorija WHERE id_korisnik='$id';");
 								while ($data = mysqli_fetch_array($result)) {
 									echo $data['naziv'].":&nbsp;";
 									$result1 = mysqli_query($mysqli, "SELECT COUNT(*) FROM odgovorena_pitanja WHERE id_korisnik='$id' AND id_pitanje IN (SELECT id_pitanje FROM pitanje_kategorija WHERE id_kategorija='$data[kategorija]');");

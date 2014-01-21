@@ -14,8 +14,7 @@
 	$result=mysqli_query($mysqli, "SELECT id_korisnik FROM korisnik WHERE nadimak_korisnik = '$user';");
 	$data=mysqli_fetch_array($result);
 	$autor=$data['id_korisnik'];
-	
-	$result=mysqli_query($mysqli, "INSERT INTO odgovorena_pitanja VALUES($autor , $id_odgovora , NOW(), $odgovor );");
+	$result=mysqli_query($mysqli, "INSERT INTO odgovorena_pitanja VALUES($autor , $id_odgovora , NOW(), '$odgovor' );");
 	if ($odgovor){
 		$result=mysqli_query($mysqli, "SELECT bodovi_pitanja FROM pitanje WHERE id_pitanje = $id_odgovora;");
 		$data=mysqli_fetch_array($result);
