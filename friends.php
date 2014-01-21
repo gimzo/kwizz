@@ -25,7 +25,7 @@
 					db_connect();
 					if (!empty($_GET['nick'])) {
 						$nadimak=$_GET['nick'];
-						$result=mysqli_query($mysqli, "SELECT nadimak_korisnik FROM korisnik WHERE nadimak_korisnik like '%$nadimak%'");
+						$result=mysqli_query($mysqli, "SELECT nadimak_korisnik FROM korisnik WHERE (nadimak_korisnik like '%$nadimak%' OR ime like '%$nadimak%') AND id_korisnik NOT IN (SELECT id_prijatelj FROM lista_prijatelja WHERE id_vlasnik='$_SESSION[id]')");
 						echo "Results:<br>";
 						while ($data=mysqli_fetch_array($result)) {
 							echo "<a href='profile.php?nickname=".$data['nadimak_korisnik']."'>".$data['nadimak_korisnik']."</a><br>";
