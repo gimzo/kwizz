@@ -103,8 +103,6 @@
 								echo "<a href='editProfile.php'>Edit profile</a>";
 								db_disconnect();
 							?>
-							
-
 						</div>
 					</div>
 				</div>
