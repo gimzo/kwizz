@@ -132,8 +132,11 @@
 									$postkat = round(($tocno[0]/$ukupno[0])*100);
 									echo $postkat."%<br>";
 								}
-
-								echo "<a href='editProfile.php'>Edit profile</a>";
+								if ($id == $_SESSION['id']) {
+									echo "<a href='editProfile.php'>Edit profile</a>&nbsp;&nbsp;";
+									echo "<a href='changePassword.php'>Change password</a>";
+								}
+								
 								db_disconnect();
 							?>
 						</div>

@@ -27,7 +27,7 @@
 		$about = $_POST['about'];
 
 		$result=mysqli_query($mysqli, "UPDATE korisnik SET nadimak_korisnik='$nadimak', ime='$ime', drzava_korisnik='$lokacija', about='$about' WHERE id_korisnik='$id';");
-		echo "UPDATE korisnik SET nadimak_korisnik='$nadimak', ime='$ime', drzava_korisnik='$lokacija', about='$about' WHERE id_korisnik='$id';";
+		//echo "UPDATE korisnik SET nadimak_korisnik='$nadimak', ime='$ime', drzava_korisnik='$lokacija', about='$about' WHERE id_korisnik='$id';";
 		header('Location: profile.php');
 	}
 	db_disconnect();
