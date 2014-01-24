@@ -7,7 +7,7 @@ html {
 
 body {
 	color: rgb(255, 255, 255);
-	margin: 0 0 100px;
+	margin: 0 0 350px;
 }
 
 .section {
@@ -25,7 +25,7 @@ footer {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 100px;
+	height: 350px;
 	width: 100%;
 	color: white;
 	background-color: rgb(80, 80, 80);
@@ -38,7 +38,19 @@ footer a {
 }
 
 .img-circle {
-	border: 2px solid rgb(255, 255, 255);
+	border: 4px solid rgb(255, 255, 255);
+}
+
+/* User photo link */
+.user a:hover img {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.user img {
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
 }
 
 /* Menu Pills */
@@ -61,3 +73,4 @@ footer a {
 .blue { background-color: rgb(41, 128, 185); }
 .green { background-color: rgb(72, 195, 131); }
 .grey { background-color: rgb(80, 80, 80); }
+.red { background-color: rgb(195, 92, 72); }

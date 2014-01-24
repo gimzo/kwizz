@@ -11,33 +11,15 @@
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/style-landing.css">
 		<script src="js/jquery-1.10.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/game.js"></script>
 	</head>
 	<body>
+		<?php include_once 'resources/templates/header.php'; ?>
+		<?php include_once 'resources/templates/menu.php'; ?>
 		<div class="container">
-			<div class="row"><img src="./images/logo.png" class="img-responsive img-center" alt="Logo"></div>
-			<div class="hr"></div>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Kwizz</a>
-				</div>
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.php">Homepage</a></li>
-						<li><a href="scoreboard.php">Scoreboard</a></li>
-					</ul>
-					<?php include_once 'loginstatus.php' ?>
-				</div>
-			</nav>
 			<div class="row">
 				<div class="col-sm-4 col-lg-3">
 					<div class="panel panel-info">
@@ -66,8 +48,42 @@
 					</div>
 				</div>
 			</div>
-			<hr>
-			<div class="footer"><p>&copy; 2013</p></div>
 		</div>
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<p class="lead text-center">Created and maintained by:</p>
+					</div>
+				</div><br>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="user">
+							<a href="https://github.com/swimR">
+								<img src="images/iva.jpg" alt="" class="img-circle img-responsive center-block">
+							</a>
+						</div>
+						<p class="text-center">Iva Petrović</p>
+					</div>
+					<div class="col-sm-4">
+						<div class="user">
+							<a href="https://github.com/gimzo">
+								<img src="images/david.jpg" alt="" class="img-circle img-responsive center-block">
+							</a>
+						</div>
+						<p class="text-center">David Dubrović</p>
+					</div>
+					<div class="col-sm-4">
+						<div class="user">
+							<a href="https://github.com/bcr3ative">
+								<img src="images/paolo.jpg" alt="" class="img-circle img-responsive center-block">
+							</a>
+						</div>
+						<p class="text-center">Paolo Perković</p>
+					</div>
+				</div><br><br>
+				<p class="text-center">Kwizz &copy; 2014 | <a href="#">Support</a> &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Blog</a> &middot; <a href="#">About Us</a></p>
+			</div>
+		</footer>
 	</body>
 </html>
