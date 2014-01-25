@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	include_once 'resources/config.php';
 	header("Content-type: text/html; charset=utf-8");
 ?>
 
@@ -10,51 +11,77 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style-landing.css">
-		<script src="js/jquery-1.10.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/game.js"></script>
 	</head>
 	<body>
+		<!-- Header -->
 		<?php include_once 'resources/templates/header.php'; ?>
-		<?php include_once 'resources/templates/menu.php'; ?>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-lg-3">
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h4 class="panel-title text-center">Stats</h4>
-						</div>
-						<div class="panel-body">
-							<p>Total: <span id="total"></span></p>
-							<h4 class="text-success">Current Score: <span id="trenscore"></span></h4>
+		<!-- Menu -->
+		<?php
+			if (isset($_SESSION['user'])) {
+			 	include_once 'resources/templates/menu.php';
+			} else {
+				echo '
+				<div class="section purple">
+					<div class="container">
+						<div class="jumbotron">
+							<h1>Howdy, stranger!</h1><br>
+							<p class="text-center">Register now to have fun playing a bunch of different quizzes with a lot of categories to choose from. Sign in if you are already a part of the community.</p><br>
+							<p class="text-center"><a href="register.php" class="btn btn-primary blue btn-lg" role="button">Register now!</a>&nbsp; or &nbsp;<a href="login.php" class="btn btn-primary blue btn-lg" role="button">Sign in</a></p>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-8 col-lg-9">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h4 class="panel-title text-center">Game</h4>
-						</div>
-						<div class="panel-body">
-							<span id="loadingDiv">
-								<?php 
-								if (isset($_SESSION['user'])) include("game.php");
-								if (!isset($_SESSION['user'])) echo "<p class='text-center'>Welcome to Kwizz! Please Log In or Sign Up to proceed.</p>";
-								?>
-							</span>
-						</div>
+				';
+			}
+		?>
+		<!-- Content -->
+		<div class="section red">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12"><h3><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;Categories:</h3><br><br></div>
+					<div class="row">
+						<?php
+							db_connect();
+							// Nadkategorije
+							$stmt = $mysqli->prepare("SELECT id_kategorija, naziv_kategorija FROM kategorija WHERE nadkategorija IS NULL");
+							$stmt->execute();
+							$res = $stmt->get_result();
+
+							// Podkategorije
+							$stmt2 = $mysqli->prepare("SELECT id_kategorija, naziv_kategorija FROM kategorija WHERE nadkategorija=? LIMIT 5");
+
+							while ($category = $res->fetch_array()) {
+								echo '
+									<div class="col-sm-4 col-md-3">
+										<h4 class="text-center">'.$category['naziv_kategorija'].'</h4>
+										<div class="list-group">';
+											$stmt2->bind_param('i', $category['id_kategorija']);
+											$stmt2->execute();
+											$res2 = $stmt2->get_result();
+											while ($subcategory = $res2->fetch_array()) {
+												echo '
+													<a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;'.$subcategory['naziv_kategorija'].'</a>
+												';
+											}
+								echo '
+										</div>
+									</div>
+								';
+							}
+							
+							$stmt2->close();
+							$stmt->close();
+							db_disconnect();
+						?>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- Footer -->
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4">
-						<p class="lead text-center">Created and maintained by:</p>
-					</div>
+					<p class="lead text-center">Created and maintained by:</p>
 				</div><br>
 				<div class="row">
 					<div class="col-sm-4">

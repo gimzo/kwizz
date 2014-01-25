@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	include_once 'config.php';
+	include_once 'resources/config.php';
 
 	if ($_SERVER['REQUEST_METHOD']==='POST') {
 		$nickname=$_POST['nickname'];
