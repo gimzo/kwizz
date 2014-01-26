@@ -3,7 +3,6 @@
 		<ul class="nav nav-pills">
 			<li><a href="index.php"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a></li>
 			<li><a href="play.php"><span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp;Play</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;Categories</a></li>
 			<li><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
 			<li><a href="friends.php"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Friends</a></li>
 			<li><a href="chat.php"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Messages</a></li>
