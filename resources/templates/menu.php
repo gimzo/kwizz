@@ -8,7 +8,23 @@
 			<li><a href="chat.php"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Messages</a></li>
 			<li><a href="rankings.php"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;Rankings</a></li>
 			<li class="pull-right"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
-			<li class="pull-right"><a href="#"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Admin</a></li>
+			<?php
+				db_connect();
+				// Ime kategorije
+				$stmt = $mysqli->prepare("SELECT uloga_korisnik FROM korisnik WHERE id_korisnik=?");
+				$stmt->bind_param('i', $_SESSION['id']);
+				$stmt->execute();
+				$res = $stmt->get_result();
+				$row = $res->fetch_array();
+				$stmt->close();
+
+				db_disconnect();
+
+				// If user has admin permissions show admin panel link
+				if ($row['uloga_korisnik'] == 0) {
+					echo '<li class="pull-right"><a href="#"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Admin</a></li>';
+				}
+			?>
 		</ul>
 	</div>
 </div>
