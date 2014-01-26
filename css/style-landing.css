@@ -10,6 +10,21 @@ body {
 	margin: 0 0 350px;
 }
 
+/* Buttons */
+.btn-default {
+	border-color: rgb(255, 255, 255);
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    border-color: rgb(255, 255, 255);
+    -moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
 /* Jumbotron */
 .jumbotron {
 	margin-bottom: 0;
@@ -17,6 +32,24 @@ body {
 	padding-bottom: 0;
 	background-color: transparent;
 }
+
+.jumbotron > p > button:hover, .jumbotron > p > button.hovered {
+	background-color: transparent;
+	border-color: rgb(255, 255, 255);
+	color: white;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+/* Forms */
+.form-control, .form-control:focus {
+    border-color: rgb(255, 255, 255);
+    outline: 0px none;
+    box-shadow: none;
+}
+
 
 /* Sections */
 .section {
@@ -35,6 +68,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     text-decoration: none;
     color: rgb(255, 255, 255);
     background-color: transparent;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
 }
 
 /* Footer */
@@ -50,7 +87,7 @@ footer {
 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
-footer a {
+footer a, footer a:hover {
 	color: white; /* bijeli linkovi */
 }
 
@@ -88,6 +125,9 @@ footer a {
 
 .blue { background-color: rgb(41, 128, 185); }
 .green { background-color: rgb(72, 195, 131); }
+.lgreen { background-color: rgb(123, 192, 68); }
+.wgreen { background-color: rgb(68, 192, 172); }
 .grey { background-color: rgb(80, 80, 80); }
 .red { background-color: rgb(195, 92, 72); }
 .purple { background-color: rgb(124, 132, 190); }
+.yellow { background-color: rgb(255, 197, 111); }
