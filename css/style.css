@@ -10,6 +10,12 @@ body {
 	margin: 0 0 100px;
 }
 
+#logo {
+	font-size: 60px;
+	font-weight: bold;
+	text-shadow: 1px 1px rgb(35, 109, 157), 2px 2px rgb(35, 109, 157), 3px 3px rgb(35, 109, 157), 4px 4px rgb(35, 110, 158), 5px 5px rgb(35, 111, 160), 6px 6px rgb(36, 112, 161), 7px 7px rgb(36, 113, 163), 8px 8px rgb(36, 114, 165), 9px 9px rgb(37, 115, 166), 10px 10px rgb(37, 116, 168), 11px 11px rgb(37, 117, 170), 12px 12px rgb(38, 119, 171), 13px 13px rgb(38, 120, 173), 14px 14px rgb(38, 121, 175), 15px 15px rgb(39, 122, 176), 16px 16px rgb(39, 123, 178), 17px 17px rgb(39, 124, 180), 18px 18px rgb(40, 125, 181), 19px 19px rgb(40, 126, 183), 20px 20px rgb(41, 128, 185);
+}
+
 /* Buttons */
 .btn-default {
 	border-color: rgb(255, 255, 255);

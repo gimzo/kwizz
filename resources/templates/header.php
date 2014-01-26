@@ -1,5 +1,5 @@
 <div class="section blue">
 	<div class="container">
-		<p class="text-center" style="font-size: 50px;">Kwizz</p>
+		<p id="logo" class="text-center">Kwizz</p>
 	</div>
 </div>

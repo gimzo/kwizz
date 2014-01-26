@@ -302,7 +302,7 @@
 												<option value="zw">Zimbabwe</option>
 											</select>
 										</div>
-										<button id="register" type="button" class="btn btn-default btn-lg center-block">Register</button>
+										<button id="register" type="submit" class="btn btn-default btn-lg center-block">Register</button>
 									</form><br>
 								</div>
 							</div>
@@ -324,7 +324,7 @@
 											<label>Password</label>
 											<input type="password" class="form-control" name="password" placeholder="Password" maxlength="45">
 										</div>
-										<button id="sign-in" type="button" class="btn btn-default btn-lg center-block">Sign in</button>
+										<button id="sign-in" type="submit" class="btn btn-default btn-lg center-block">Sign in</button>
 									</form><br>
 								</div>
 							</div>
@@ -391,7 +391,8 @@
 			});
 
 			// Registration
-			$("#register").click(function() {
+			$("#register").click(function(event) {
+				event.preventDefault();
 				value = $("#register-form").serialize();
 				$.ajax({
 					url: 'resources/library/register.php',
@@ -405,7 +406,8 @@
 			});
 
 			// Sign in
-			$("#sign-in").click(function() {
+			$("#sign-in").click(function(event) {
+				event.preventDefault();
 				value = $("#sign-in-form").serialize();
 				$.ajax({
 					url: 'resources/library/sign-in.php',
