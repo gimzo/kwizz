@@ -1,6 +1,6 @@
 <?php
 
-	include_once 'config.php';
+	include_once 'resources/config.php';
 	session_start();
 	if (!isset($_SESSION['user'])) {
 		die();

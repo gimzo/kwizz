@@ -1,5 +1,5 @@
 <?php
-	include_once 'config.php';
+	include_once 'resources/config.php';
 
 	if ($_SERVER['REQUEST_METHOD']==='GET') {
 		db_connect();

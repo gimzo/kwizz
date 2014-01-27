@@ -107,7 +107,7 @@
 	<select id="kategorije" name="kategorije">
 <?php
 session_start();
-	include_once 'config.php';
+	include_once 'resources/config.php';
 	
 	if (!isset($_SESSION['user'])) {
 		die();

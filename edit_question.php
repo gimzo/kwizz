@@ -1,5 +1,5 @@
 <?php
-	include_once 'config.php';
+	include_once 'resources/config.php';
 	$id=$_GET['question'];
 
 	db_connect();
