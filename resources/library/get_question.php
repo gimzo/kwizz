@@ -10,7 +10,7 @@ class Pitanje
 	public $kategorija="";
 }
 	session_start();
-	include_once 'config.php';
+	include_once '../config.php';
 	
 	if (!isset($_SESSION['user'])) {
 		die();
@@ -23,7 +23,7 @@ class Pitanje
 	//odabir kategorije, ukoliko postoji u requestu
 	if (isset($_GET['kategorije']))
 	{
-		$categorycheck=" AND (id_kategorija IN ( ".implode(", ",$_GET['kategorije'])." ) OR nadkategorija IN ( ".implode(", ",$_GET['kategorije'])." ) ) ";
+		$categorycheck=" AND id_kategorija = ".$_GET['kategorije']." ";
 	}
 	
 	//odabir tezine, ukoliko postoje sve opcije urequestu

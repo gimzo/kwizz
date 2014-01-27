@@ -22,7 +22,7 @@
 
 				// If user has admin permissions show admin panel link
 				if ($row['uloga_korisnik'] == 0) {
-					echo '<li class="pull-right"><a href="#"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Admin</a></li>';
+					echo '<li class="pull-right"><a href="admin.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Admin</a></li>';
 				}
 			?>
 		</ul>
