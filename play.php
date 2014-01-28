@@ -41,9 +41,21 @@
 		<!-- Menu -->
 		<?php include_once 'resources/templates/menu.php'; ?>
 		<!-- Status section -->
-		<div class="section purple"><div id="status-window" class="container"></div></div>
+		<div class="section purple">
+			<div class="container">
+				<div class="row">
+					<div id="status-window" class="col-sm-12 col-md-8 col-md-offset-2"></div>
+				</div>
+			</div>
+		</div>
 		<!-- Game section -->
-		<div id="game-section" class="section red"><div id="game-window" class="container"></div></div>
+		<div id="game-section" class="section red">
+			<div class="container">
+				<div class="row">
+					<div id="game-window" class="col-sm-10 col-sm-offset-1 col col-md-6 col-md-offset-3"></div>
+				</div>
+			</div>
+		</div>
 		<!-- Categories section -->
 		<div id="categories-section" class="section red">
 			<?php include_once 'resources/templates/categories.php'; ?>
@@ -55,7 +67,8 @@
 		<script src="js/jquery.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.knob.js"></script>
 		<!-- Game javascript file -->
-		<script src="js/game2.js"></script>
+		<script src="js/game.js"></script>
 	</body>
 </html>

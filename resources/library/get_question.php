@@ -61,7 +61,7 @@ class Pitanje
 	//prihvat kategorije
 	$result=mysqli_query($mysqli, "SELECT naziv_kategorija FROM kategorija NATURAL JOIN pitanje_kategorija WHERE id_pitanje=".$id.";");
 	while ($data=mysqli_fetch_array($result)) {
-		$pitanje->kategorija=$pitanje->kategorija . $data['naziv_kategorija'] . " | ";
+		$pitanje->kategorija=$pitanje->kategorija . $data['naziv_kategorija'];
 	}
 	$pitanje->kategorija=trim($pitanje->kategorija);
 	mysqli_free_result($result);
