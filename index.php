@@ -21,6 +21,13 @@
 		<?php
 			if (isset($_SESSION['user'])) {
 			 	include_once 'resources/templates/menu.php';
+			 	echo '
+			 	<div class="section purple">
+					<div class="container">
+						<p class="lead text-center font-lg">Welcome '.$_SESSION['user'].'!<br>Have fun :)</p>
+					</div>
+				</div>
+			 	';
 			} else {
 				echo '
 				<div class="section purple">

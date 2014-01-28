@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	include_once 'resources/config.php';
+	header("Content-type: text/html; charset=utf-8");
+	if (!isset($_SESSION['user'])) {
+		header("Location: index.php");
+		die();
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +32,6 @@
 </head>
 <body>
 	<?php
-		include_once 'resources/config.php';
-	
 		if ($_SERVER['REQUEST_METHOD']==='POST') {
 			db_connect();
 			if (isset($_POST['potvrdi'])) {

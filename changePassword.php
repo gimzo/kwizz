@@ -1,10 +1,10 @@
 <?php
 	session_start();
-
 	include_once 'resources/config.php';
-
+	header("Content-type: text/html; charset=utf-8");
 	if (!isset($_SESSION['user'])) {
-		header('Location: index.php');
+		header("Location: index.php");
+		die();
 	}
 
 	if (!empty($_POST['old']) && !empty($_POST['new']) && !empty($_POST['retype'])) {

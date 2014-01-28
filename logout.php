@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	header("Content-type: text/html; charset=utf-8");
+	if (!isset($_SESSION['user'])) {
+		header("Location: index.php");
+		die();
+	}
 
 	// Ako je korisnik ulogiran izvrsava sign out
 	if (isset($_SESSION['user'])) {
