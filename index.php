@@ -12,7 +12,6 @@
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style-landing.css">
-
 	</head>
 	<body>
 		<!-- Header -->
@@ -24,7 +23,11 @@
 			 	echo '
 			 	<div class="section purple">
 					<div class="container">
-						<p class="lead text-center font-lg">Welcome '.$_SESSION['user'].'!<br>Have fun :)</p>
+						<div class="row">
+							<div class="col-sm-12 col-md-12">
+								<p class="lead text-center font-lg">Welcome '.$_SESSION['user'].'!<br>Have fun :)</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			 	';

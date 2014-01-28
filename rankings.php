@@ -11,71 +11,64 @@
 <!DOCTYPE html> 
 <html>
 	<head>
-		<title>Scoreboard</title>
+		<title>Kwizz | Rankings</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script src="js/jquery-1.10.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="row"><img src="./images/scoreboard.png" class="img-responsive img-center" alt="Scoreboard"></div>
-			<div class="hr"></div>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Kwizz</a>
-				</div>
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="index.php">Homepage</a></li>
-						<li class="active"><a href="scoreboard.php">Scoreboard</a></li>
-					</ul>
-					<?php include_once 'loginstatus.php' ?>
-				</div>
-			</nav>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h4 class="panel-title text-center">Scoreboard</h4>
-						</div>
-						<div class="panel-body">
-							<span id="loadingDiv">
-								<?php
-								db_connect();
-
-								$rezultat=mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
-
-								if ($rezultat->num_rows > 0){
-								echo "<table class='table table-striped text-center'><tr><th class='text-center'>Rank</th><th class='text-center'>Player</th><th class='text-center'>Score</th></tr>";
-								$rank=1;
-								while ($data=mysqli_fetch_array($rezultat))
-								{
-									echo "<tr><td>$rank.</td><td>$data[nadimak_korisnik]</td><td>$data[rezultat]</td></tr>";
-									$rank++;
-								}
-								echo "</table>";
-								}
-								else
-									echo "<p class='text-center'>We do not have any scores yet!</p>";
-								db_disconnect();
-								?>
-							</span>
-						</div>
+		<!-- Header -->
+		<?php include_once 'resources/templates/header.php'; ?>
+		<!-- Menu -->
+		<?php include_once 'resources/templates/menu.php'; ?>
+		<div class="section purple">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<p class="lead text-center font-lg">See how well you stack up:</p>
 					</div>
 				</div>
 			</div>
-			<hr>
-			<div class="footer"><p>&copy; 2013</p></div>
 		</div>
+		<div class="section red">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<?php
+							db_connect();
+
+							$rezultat = mysqli_query($mysqli,"SELECT * FROM rezultat NATURAL JOIN korisnik WHERE id_mode=0 ORDER BY rezultat DESC;");
+
+							if (mysqli_num_rows($rezultat) > 0) {
+								echo "<table class='table text-center'><thead><tr><th class='text-center'># Rank</th><th class='text-center'>Player</th><th class='text-center'>Full name</th><th class='text-center'>Score</th><th class='text-center'>Country</th></tr></thead>";
+								$rank=1;
+								echo '<tbody>';
+								while ($data = mysqli_fetch_array($rezultat)) {
+									if ($data['id_korisnik'] == $_SESSION['id']) {
+										echo '<tr style="background-color: rgb(207, 109, 90);"><td>'.$rank.'</td><td>'.$data['nadimak_korisnik'].'</td><td>'.$data['ime'].'</td><td>'.$data['rezultat'].'</td><td>'.strtoupper($data['drzava_korisnik']).'</td></tr>';
+									} else {
+										echo '<tr><td>'.$rank.'</td><td>'.$data['nadimak_korisnik'].'</td><td>'.$data['ime'].'</td><td>'.$data['rezultat'].'</td><td>'.strtoupper($data['drzava_korisnik']).'</td></tr>';
+									}
+									$rank++;
+								}
+								echo "</tbody></table>";
+							} else {
+								echo "<p class='lead text-center font-lg'>We do not have any scores yet!</p>";
+							}
+
+							db_disconnect();
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer -->
+		<?php include_once 'resources/templates/footer.php'; ?>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
