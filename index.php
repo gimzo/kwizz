@@ -33,7 +33,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="index.php">Homepage</a></li>
 						<li><a href="scoreboard.php">Scoreboard</a></li>
-						<li><a href="index.php?live">Live game</a></li>
+						 <li><a href="index.php?live">Live game</a></li>
 					</ul>
 					<?php include_once 'loginstatus.php' ?>
 				</div>

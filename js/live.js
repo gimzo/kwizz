@@ -11,9 +11,20 @@ function receive(e) {
       case "opponent":
          console.log("opponent je "+stuff.ime);
          break;
+      case("odgovor"):
+         to=stuff.tocno?"tocno":"krivo";
+         $("#report").html(stuff.ime+" je "+to+" odgovorio!");
+         TimerStart();
+         break;
+      case("kraj"):
+         GameOver(stuff);
+         break;
+      case("broj"):
+         $("#broj_pitanja").html("Pitanje " + stuff.sad+ " / " + stuff.total);
+         break;
       default:
          console.log("ovo je default");
-         NovoPitanje(stuff);
+         NovoPitanjeTimeout(stuff);
    }
 }
 function error() {
@@ -22,8 +33,8 @@ function error() {
 	$('#kategorija').hide();
 	$('#pitanje').hide();
 	$('#odgovorabcd').hide();
-	$('#odgovortext').hide()
-	alert("Connection error - firewall problem ili live igra trenutno nije aktivna")
+	$('#odgovortext').hide();
+	alert("Connection error - firewall problem ili live igra trenutno nije aktivna");
 }
 
 function connect() {
@@ -37,7 +48,6 @@ function SetGame()
 {
 	TimerStop(timerInterval);
 	$('#timer').empty();
-	countdownTime=60; // vrijeme trajanja
 	trenscore=0;
 	CHAstart=0;
 	tocniOdgovori=0;
@@ -136,6 +146,10 @@ function Lobby ()
 
 function NovoPitanje (json)
 {
+   TimerStop(timerInterval);
+   $('#timer').empty();
+   countdownTime=5; // vrijeme trajanja
+   $("#report").html("");
 	$('#menu_btn').removeAttr('disabled');
 	$(".gamescreen").hide();
 	odgovoreno=false;
@@ -208,7 +222,7 @@ function CheckTekstOdgovora(giveup)
 			ReportOdgovor(true);
 			odgovoreno=true;
 			tocniOdgovori++;
-			NovoPitanjeTimeout();
+			//NovoPitanjeTimeout();
 		}
 	}
 	if (giveup)
@@ -216,7 +230,7 @@ function CheckTekstOdgovora(giveup)
 		odgovoreno=true;
 		ReportOdgovor(false);
 		$('#txtOdgovor').css("background-color","rgb(217, 83, 79)"); // TO-DO sredit boje
-		NovoPitanjeTimeout();
+		//NovoPitanjeTimeout();
 	}
 }
 
@@ -231,28 +245,31 @@ function CheckABCDodgovor(ovo)
 		ReportOdgovor(true);
 		tocniOdgovori++;
 		$(ovo).removeClass('btn-default').addClass('btn-success');
-		NovoPitanjeTimeout();
+		//NovoPitanjeTimeout();
 	}
 	else
 	{
 		ReportOdgovor(false);
 		$(ovo).removeClass('btn-default').addClass('btn-danger');
-		NovoPitanjeTimeout();
+		//NovoPitanjeTimeout();
 	}
 }
 
 function ReportOdgovor(tocno)
 {
+   TimerStop(timerInterval);
+   
    webSocket.send(tocno?"T":"N");
 	if (tocno)trenscore+=bodovi_pitanja;
 	$('#trenscore').html(trenscore);
 	$('#total').load('myscore.php');
 }
 
-function NovoPitanjeTimeout() {
-	pitanjeTimeout=setTimeout(function(){
-		NovoPitanje();
-	}, 2000);
+function NovoPitanjeTimeout(json) {
+	pitanjeTimeout=setTimeout(function()
+	{
+	   NovoPitanje(json)
+	}, 1000);
 }
 
 function TimeoutStop(timeoutVar) {
@@ -264,15 +281,26 @@ function TimerStart() {
 		countdownTime--;
 		$('#timer').html('<pre>Time: <strong>'+countdownTime+'</strong> sec</pre>');
 		if (countdownTime==0) {
-			$('#modal_title').html('Game Over');
-			$('#window_kategorija').html('You answered correctly '+tocniOdgovori+' out of '+brojPitanja+' questions.<br>Success rate is '+Math.round((tocniOdgovori/brojPitanja)*100*10)/10+'%.');
-			$('#myModal').modal('show');
 			TimeoutStop(pitanjeTimeout);
-			StartGame();
+			ReportOdgovor(false);
 		}
 	}, 1000);
 }
 
 function TimerStop(timerVar) {
 	clearInterval(timerVar);
+}
+
+function GameOver(stuff)
+{
+   TimerStop(timerInterval);
+	$('#timer').empty();
+   $('#endgame').hide();
+	$('#kategorija').hide();
+	$('#pitanje').hide();
+	$('#odgovorabcd').hide();
+	$('#odgovortext').hide();
+   $("#rezultat").html("<h3>Kraj</h3><h4>"+stuff.p1+ " : "+stuff.s1+"</h4><h4>"+stuff.p2+ " : "+stuff.s2+"</h4>");
+   $("#rezultat").fadeIn();
+   webSocket.close();
 }

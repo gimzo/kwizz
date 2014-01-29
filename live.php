@@ -9,19 +9,13 @@
 <div id="startgame" class="gamescreen text-center">
 	<div class="hr"></div>
 	<div id="kat">
-		<h5>Select Category:</h5>
-		<button data-toggle="modal" href="#myModal" class="btn btn-default" onclick="Kategorije()">Categories</button>
 	</div>
 	<div class="hr"></div>
 	<div>
-		<h5>Select Difficulty:</h5>
-		<button class="btn btn-info" id="easy" onclick="setLevel(this)">Easy</button>
-		<button class="btn btn-warning" id="med" onclick="setLevel(this)">Medium</button>
-		<button class="btn btn-danger" id="hard" onclick="setLevel(this)">Hard</button>
 	</div>
 	<div class="hr"></div>
 	<div>
-		<button class="btn btn-success" onclick="Lobby()">Start!</button>
+		<button class="btn btn-success" onclick="Lobby()">Join game</button>
 	</div>
 </div>
 <!-- Modal za kategorije -->
@@ -36,7 +30,7 @@
 		</div>
 	</div>
 </div>
-
+<div id="rezultat"></div>
 <!-- Prikaz kategorija -->
 <div id="kategorija"></div>
 <!-- Prikaz pitanja -->
@@ -50,6 +44,8 @@
 		<button class="btn btn-default" type="button" id="neznam" onclick="CheckTekstOdgovora(true)">I don't know!</button>
 	</span>
 </div>
+<div id="drugi_odgovor"></div>
+<div id="broj_pitanja"></div>
 
 <!-- Pocetak igre -->
 <script>
