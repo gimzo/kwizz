@@ -1,4 +1,4 @@
-<script src="js/game.js"></script>
+<script src="js/live.js"></script>
 <button id="menu_btn" type="button" class="btn btn-default" onclick="StartGame()">
 	<span class="glyphicon glyphicon-align-center"></span> Main Menu
 </button>
@@ -7,11 +7,6 @@
 
 <!-- Sucelje -->
 <div id="startgame" class="gamescreen text-center">
-	<div>
-		<h5>Select Mode:</h5>
-		<button class="btn btn-default" id="FFA" onclick="setMode(this)">Free For All</button>
-		<button class="btn btn-default" id="CHA" onclick="setMode(this)">Challenge</button>
-	</div>
 	<div class="hr"></div>
 	<div id="kat">
 		<h5>Select Category:</h5>
@@ -26,7 +21,7 @@
 	</div>
 	<div class="hr"></div>
 	<div>
-		<button class="btn btn-success" onclick="NovoPitanje()">Start!</button>
+		<button class="btn btn-success" onclick="Lobby()">Start!</button>
 	</div>
 </div>
 <!-- Modal za kategorije -->
@@ -58,5 +53,6 @@
 
 <!-- Pocetak igre -->
 <script>
-	$(window).load(StartGame());
+  <?php echo "var username='$_SESSION[user]';" ?>
+	$(window).load(connect());
 </script>

@@ -14,7 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="js/jquery-1.10.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/game.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -34,6 +33,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="index.php">Homepage</a></li>
 						<li><a href="scoreboard.php">Scoreboard</a></li>
+						<li><a href="index.php?live">Live game</a></li>
 					</ul>
 					<?php include_once 'loginstatus.php' ?>
 				</div>
@@ -58,7 +58,13 @@
 						<div class="panel-body">
 							<span id="loadingDiv">
 								<?php 
-								if (isset($_SESSION['user'])) include("game.php");
+								if (isset($_SESSION['user'])) 
+								{
+									if (isset($_GET['live']))
+										include("live.php");
+									else
+										include("game.php");
+								}
 								if (!isset($_SESSION['user'])) echo "<p class='text-center'>Welcome to Kwizz! Please Log In or Sign Up to proceed.</p>";
 								?>
 							</span>
