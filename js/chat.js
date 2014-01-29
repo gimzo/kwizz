@@ -8,16 +8,20 @@ if (contact_id) {
 
 $("#message-content").keypress(function(e){
     if (e.which == 13){
-		send_message($("#message-content").val());
-		$("#message-content").val('');
-		populate_chat_window();
+    	if ($("#message-content").val() != '') {
+    		send_message($("#message-content").val());
+    		$("#message-content").val('');
+    		populate_chat_window();
+    	}
     }
 });
 
 $("#send-btn").click( function() {
-	send_message($("#message-content").val());
-	$("#message-content").val('');
-	populate_chat_window();
+	if ($("#message-content").val() != '') {
+		send_message($("#message-content").val());
+		$("#message-content").val('');
+		populate_chat_window();
+	}
 });
 
 // Ucitavanje poruka
