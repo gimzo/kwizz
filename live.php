@@ -58,7 +58,7 @@
 				<div class="row">
 					<div id="game-window" class="col-sm-10 col-sm-offset-1 col col-md-6 col-md-offset-3">
 <button id="menu_btn" type="button" class="btn btn-default" onclick="location.reload();">
-	<span class="glyphicon glyphicon-align-center"></span> Main Menu
+	<span class="glyphicon glyphicon-align-center"></span> Restart game
 </button>
 <span id="timer" class="pull-right"></span>
 <hr>
@@ -76,21 +76,7 @@
 		<button id="join" class="btn btn-success" onclick="Lobby()">Join game</button>
 	</div>
 </div>
-<!-- Modal za kategorije -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 id='modal_title' class="modal-title text-center">Categories</h4>
-			</div>
-			<div id="window_kategorija" class="modal-body text-center"></div>
-		</div>
-	</div>
-</div>
 <div id="rezultat"></div>
-<!-- Prikaz kategorija -->
-<div id="kategorija"></div>
 <!-- Prikaz pitanja -->
 <div id="pitanje" class="well well-sm text-center"></div>
 <!-- Odgovori a,b,c,d -->

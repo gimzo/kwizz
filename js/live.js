@@ -1,47 +1,49 @@
 /* Stvari vezane za live igru */
 
-/* Početni ekran i setup opcija */
 
+//fancy animacije i brojanje vremena
 var pitanjeTimeout;
 var timerInterval;
+
 var webSocket
 
 var answerable; // blokiranje tipki kad istekne vrijeme
 
+/* helper funkcije za komunikaciju sa serverom */
 
 function receive (e) {
-   console.log(e.data);
+   console.log(e.data); //TODO: remove
    stuff=JSON.parse(e.data)
    switch(stuff.tip) {
       case "opponent":
-         console.log("opponent je "+stuff.ime);
+         console.log("opponent je "+stuff.ime); //TODO: remove
          break;
       case("odgovor"):
-         to=stuff.tocno?"tocno":"krivo";
-         $("#report").html(stuff.ime+" je "+to+" odgovorio!");
+         to=stuff.tocno?"correctly!":"incorrectly!";
+         $("#drugi_odgovor").html(stuff.ime+" has answered "+to);
          TimerStart();
          break;
       case("kraj"):
          GameOver(stuff);
          break;
       case("broj"):
-         $("#broj_pitanja").html("Pitanje " + stuff.sad+ " / " + stuff.total);
+         $("#broj_pitanja").html("Question " + stuff.sad+ " / " + stuff.total);
          break;
       default:
-         console.log("ovo je default");
+         console.log("ovo je default"); //TODO: remove
          NovoPitanjeTimeout(stuff);
    }
 }
 
 
 function error() {
-   $(".gamescreen").hide();
    $('#endgame').hide();
 	$('#kategorija').hide();
 	$('#pitanje').hide();
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
-	alert("Connection error - firewall problem ili live igra trenutno nije aktivna");
+	$("#join").hide();
+   $("#buttonmsg").html("<h4>Connection error</h4><h5>Real time game may be offline</h5>");
 }
 
 
@@ -52,6 +54,7 @@ function connect() {
    webSocket.onopen=SetGame;
 }
 
+/* Početni ekran i setup opcija */
 
 function SetGame() {
    answerable=false;
@@ -79,7 +82,7 @@ function Lobby() {
 }
 
 
-/* Izvlači iz baze novo pitanje */
+/* Prima sa servera novo pitanje */
 
 function NovoPitanje (json) {
    TimerStop(timerInterval);
