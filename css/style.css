@@ -11,6 +11,10 @@ body {
 	background-color: rgb(195, 92, 72);
 }
 
+p > a, p > a:hover{
+	color: rgb(255, 255, 255);
+}
+
 #logo {
 	font-size: 60px;
 	font-weight: bold;
@@ -124,6 +128,18 @@ footer a, footer a:hover {
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear;
+}
+
+/* Nav Pills */
+.nav-stacked > li > a {
+	border: 1px solid rgb(255, 255, 255);
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+.nav-stacked > li > a:hover {
+	background-color: transparent;
+	color: rgb(255, 255, 255);
 }
 
 /* Colors */

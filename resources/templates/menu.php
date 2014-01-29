@@ -5,7 +5,7 @@
 			<li><a href="play.php"><span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp;Play</a></li>
 			<li><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
 			<li><a href="friends.php"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Friends</a></li>
-			<li><a href="chat.php"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Messages</a></li>
+			<li><a href="messages.php"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Messages</a></li>
 			<li><a href="rankings.php"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;Rankings</a></li>
 			<li class="pull-right"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
 			<?php
