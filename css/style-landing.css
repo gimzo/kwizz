@@ -7,8 +7,7 @@ html {
 
 body {
 	color: rgb(255, 255, 255);
-	margin: 0 0 100px;
-	background-color: rgb(195, 92, 72);
+	margin: 0 0 350px;
 }
 
 #logo {
@@ -32,40 +31,36 @@ body {
 	transition: all 0.2s linear;
 }
 
-/* Forms */
-.form-control {
-	border: 1px solid rgb(255, 255, 255);
-}
-
-.form-control:focus {
-    border-color: rgb(255, 255, 255);
-    outline: 0px none;
-    box-shadow: none;
-}
-
-/* Buttons */
-.btn-correct {
-	color: rgb(255, 255, 255);
-	background-color: rgb(71, 164, 71);
-	border-color: rgb(71, 164, 71);
-	text-decoration: none;
-}
-
-.btn-incorrect {
-	color: rgb(255, 255, 255);
-	background-color: rgb(210, 50, 45);
-	border-color: rgb(210, 50, 45);
-	text-decoration: none;
-}
-
-.btn-correct:hover, .btn-incorrect:hover {
-	color: rgb(255, 255, 255);
-}
-
 /* Fonts */
 .font-lg {
 	font-size: 30px;
 }
+
+/* Jumbotron */
+.jumbotron {
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	background-color: transparent;
+}
+
+.jumbotron > p > button:hover, .jumbotron > p > button.hovered {
+	background-color: transparent;
+	border-color: rgb(255, 255, 255);
+	color: white;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+/* Forms */
+.form-control, .form-control:focus {
+	border-color: rgb(255, 255, 255);
+	outline: 0px none;
+	box-shadow: none;
+}
+
 
 /* Sections */
 .section {
@@ -95,7 +90,7 @@ footer {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 100px;
+	height: 350px;
 	width: 100%;
 	color: white;
 	background-color: rgb(80, 80, 80);
@@ -107,12 +102,23 @@ footer a, footer a:hover {
 	color: white; /* bijeli linkovi */
 }
 
+/* User photo link */
 .img-circle {
-	border: 2px solid rgb(255, 255, 255);
+	border: 4px solid rgb(255, 255, 255);
+}
+
+.user a:hover img {
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+}
+
+.user img {
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
 }
 
 /* Menu Pills */
-
 .nav-pills > li > a {
 	color: rgb(255, 255, 255);
 }

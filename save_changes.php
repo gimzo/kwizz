@@ -1,5 +1,11 @@
 <?php
-	include_once 'config.php';
+	session_start();
+	include_once 'resources/config.php';
+	header("Content-type: text/html; charset=utf-8");
+	if (!isset($_SESSION['user'])) {
+		header("Location: index.php");
+		die();
+	}
 
 	if ($_SERVER['REQUEST_METHOD']==='GET') {
 		db_connect();

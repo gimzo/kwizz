@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	include_once 'resources/config.php';
+	header("Content-type: text/html; charset=utf-8");
+	if (!isset($_SESSION['user'])) {
+		header("Location: index.php");
+		die();
+	}
+?>
 	<script language="javascript" type="text/javascript">
 	function checkvalue(val) {
 		if(val=="1") {
@@ -106,13 +115,6 @@
 	</div>
 	<select id="kategorije" name="kategorije">
 <?php
-session_start();
-	include_once 'config.php';
-	
-	if (!isset($_SESSION['user'])) {
-		die();
-	}
-	
 	db_connect();
 	$result=mysqli_query($mysqli, "SELECT id_kategorija, naziv_kategorija FROM kategorija;");
 	db_disconnect();

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once 'config.php';
+	include_once '../config.php';
 	
 	if (!isset($_SESSION['user'])) {
 		die();
@@ -23,5 +23,4 @@
 		if (mysqli_affected_rows($mysqli)<1)$result=mysqli_query($mysqli, "INSERT INTO rezultat VALUES ($autor, 0, $bodovi);");
 	}
 	db_disconnect();
-	
 ?>
