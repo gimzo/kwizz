@@ -93,7 +93,7 @@ class Game():
          self.p1.sendStuff(infoPitanje)
          self.p2.sendStuff(infoPitanje)
          self.odgovoreno=0
-         pitanje=urllib2.urlopen(URL+"/get_question.php").read()
+         pitanje=urllib2.urlopen(URL+"/resources/library/get_question.php").read()
          self.p1.sendQuestion(pitanje)
          self.p2.sendQuestion(pitanje)
          self.p1s=1

@@ -67,8 +67,6 @@ function SetGame()
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
 	$('#menu_btn').attr('disabled','disabled');
-	setMode(false);
-	setLevel(false);
 }
 
 /* Funkcije za odabir opcija botunima */
