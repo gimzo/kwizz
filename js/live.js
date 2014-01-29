@@ -4,6 +4,8 @@
 var pitanjeTimeout;
 var timerInterval;
 var webSocket
+
+var answerable;
 function receive(e) {
    console.log(e.data);
    stuff=JSON.parse(e.data)
@@ -46,6 +48,7 @@ function connect() {
 
 function SetGame()
 {
+   answerable=false;
 	TimerStop(timerInterval);
 	$('#timer').empty();
 	trenscore=0;
@@ -140,6 +143,8 @@ function KatCheck(b)
 function Lobby ()
 {
    webSocket.send("U"+username);
+   $("#join").hide();
+   $("#buttonmsg").html("<h4>Waiting for other player...</h4>");
 }
 
 /* Izvlači iz baze novo pitanje */
@@ -181,6 +186,7 @@ function NovoPitanje (json)
 		$("#odgovorabcd").fadeIn();
 	}
 	brojPitanja++;
+	answerable=true;
 }
 
 /* Postavlja tipke s odgovorima */
@@ -214,6 +220,7 @@ function pripremiABCD(data)
 
 function CheckTekstOdgovora(giveup)
 {
+   if (!answerable) { return;}
 	if (odgovoreno) {return;}
 	for (var i=0;i<tocni_odgovori.length;i++)
 	{
@@ -238,6 +245,9 @@ function CheckTekstOdgovora(giveup)
 
 function CheckABCDodgovor(ovo)
 {
+   if (!answerable) {return;}
+	TimerStop(timerInterval);
+	$('#timer').empty();
 	if (odgovoreno) {return;}
 	odgovoreno=true;
 	if ( $(ovo).data("id")==tocan_odgovor)
@@ -257,7 +267,9 @@ function CheckABCDodgovor(ovo)
 
 function ReportOdgovor(tocno)
 {
-   TimerStop(timerInterval);
+   answerable=false;
+	TimerStop(timerInterval);
+	$('#timer').empty();
    
    webSocket.send(tocno?"T":"N");
 	if (tocno)trenscore+=bodovi_pitanja;
@@ -281,8 +293,10 @@ function TimerStart() {
 		countdownTime--;
 		$('#timer').html('<pre>Time: <strong>'+countdownTime+'</strong> sec</pre>');
 		if (countdownTime==0) {
+		   ReportOdgovor(false);
 			TimeoutStop(pitanjeTimeout);
-			ReportOdgovor(false);
+			TimerStop(timerInterval);
+	      $('#timer').empty();
 		}
 	}, 1000);
 }
@@ -293,6 +307,13 @@ function TimerStop(timerVar) {
 
 function GameOver(stuff)
 {
+	TimerStop(timerInterval);
+	$('#timer').empty();
+	$('#broj_pitanja').hide();
+   endMsg="<h2>Round complete</h2>";
+   if (stuff.broken) {
+      endMsg+="<h3>"+stuff.broken+" has left the game</h3>";
+   }
    TimerStop(timerInterval);
 	$('#timer').empty();
    $('#endgame').hide();
@@ -300,7 +321,17 @@ function GameOver(stuff)
 	$('#pitanje').hide();
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
-   $("#rezultat").html("<h3>Kraj</h3><h4>"+stuff.p1+ " : "+stuff.s1+"</h4><h4>"+stuff.p2+ " : "+stuff.s2+"</h4>");
+	if (stuff.s1>stuff.s2) {
+	   endMsg+="<h4>"+stuff.p1+" Won this round!</h4>";
+	   endMsg+="<h5>"+stuff.p1+ " : "+stuff.s1+"</h5><h5>"+stuff.p2+ " : "+stuff.s2+"</h5>";
+	}else if (stuff.s2>stuff.s1) {
+	   endMsg+="<h4>"+stuff.p2+" Won this round!</h4>";
+	   endMsg+="<h5>"+stuff.p2+ " : "+stuff.s2+"</h5><h5>"+stuff.p1+ " : "+stuff.s1+"</h4>";
+	}else {
+	   endMsg+="<h4>TIED!</h4>";
+	   endMsg+="<h5>"+stuff.p1+ " : "+stuff.s1+"</h5><h5>"+stuff.p2+ " : "+stuff.s2+"</h5>";
+	}
+   $("#rezultat").html(endMsg);
    $("#rezultat").fadeIn();
    webSocket.close();
 }

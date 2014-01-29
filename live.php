@@ -1,5 +1,5 @@
 <script src="js/live.js"></script>
-<button id="menu_btn" type="button" class="btn btn-default" onclick="StartGame()">
+<button id="menu_btn" type="button" class="btn btn-default" onclick="location.reload();">
 	<span class="glyphicon glyphicon-align-center"></span> Main Menu
 </button>
 <span id="timer" class="pull-right"></span>
@@ -14,8 +14,8 @@
 	<div>
 	</div>
 	<div class="hr"></div>
-	<div>
-		<button class="btn btn-success" onclick="Lobby()">Join game</button>
+	<div id="buttonmsg">
+		<button id="join" class="btn btn-success" onclick="Lobby()">Join game</button>
 	</div>
 </div>
 <!-- Modal za kategorije -->
