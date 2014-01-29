@@ -54,6 +54,7 @@ function connect() {
    webSocket.onopen=SetGame;
 }
 
+
 /* Početni ekran i setup opcija */
 
 function SetGame() {
@@ -134,6 +135,7 @@ function pripremiABCD (data) {
 			odgovori[i]=data.odgovori[i];
 		}
 	}
+console.log(odgovori);
 	for (var i in odgovori)
 	{
 		var button=$("<button>",
@@ -245,6 +247,7 @@ function GameOver (stuff) {
 	TimerStop(timerInterval);
 	$('#timer').empty();
 	$('#broj_pitanja').hide();
+	$('#drugi_odgovor').hide();
    endMsg="<h2>Round complete</h2>";
    if (stuff.broken) {
       endMsg+="<h3>"+stuff.broken+" has left the game</h3>";

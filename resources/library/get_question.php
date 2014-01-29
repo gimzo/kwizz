@@ -11,10 +11,7 @@ class Pitanje
 }
 	session_start();
 	include_once '../config.php';
-	
-	//if (!isset($_SESSION['user'])) {
-	//	die();
-	//}
+
 	
 	db_connect();
 	$difficulty="";

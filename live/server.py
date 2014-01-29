@@ -159,6 +159,9 @@ class KwizzLive():
             return idlePlayers
       return False
 
+   def kraj(self, broken=None):
+      pass
+
 
 if __name__ == '__main__':
    log.startLogging(sys.stdout)
