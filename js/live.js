@@ -1,12 +1,15 @@
 /* Stvari vezane za live igru */
+
 /* Početni ekran i setup opcija */
 
 var pitanjeTimeout;
 var timerInterval;
 var webSocket
 
-var answerable;
-function receive(e) {
+var answerable; // blokiranje tipki kad istekne vrijeme
+
+
+function receive (e) {
    console.log(e.data);
    stuff=JSON.parse(e.data)
    switch(stuff.tip) {
@@ -29,6 +32,8 @@ function receive(e) {
          NovoPitanjeTimeout(stuff);
    }
 }
+
+
 function error() {
    $(".gamescreen").hide();
    $('#endgame').hide();
@@ -39,6 +44,7 @@ function error() {
 	alert("Connection error - firewall problem ili live igra trenutno nije aktivna");
 }
 
+
 function connect() {
    webSocket=new WebSocket("ws://"+window.location.hostname+":9000");
    webSocket.onmessage=receive;
@@ -46,18 +52,14 @@ function connect() {
    webSocket.onopen=SetGame;
 }
 
-function SetGame()
-{
+
+function SetGame() {
    answerable=false;
 	TimerStop(timerInterval);
 	$('#timer').empty();
 	trenscore=0;
-	CHAstart=0;
 	tocniOdgovori=0;
 	brojPitanja=0;
-	gamemode="FFA";	
-	level=new Array(true,false,false);
-	catlist=new Array();
 	$("#startgame").fadeIn();
 	$("#trenscore").html('0');
 	$("#total").load('myscore.php');
@@ -69,86 +71,17 @@ function SetGame()
 	$('#menu_btn').attr('disabled','disabled');
 }
 
-/* Funkcije za odabir opcija botunima */
 
-function setLevel(b)
-{
-	if (b){
-		switch($(b).attr("id"))
-		{
-			case "easy":
-			level[0]=!level[0];
-			break;
-			case "med":
-			level[1]=!level[1];
-			break;
-			case "hard":
-			level[2]=!level[2];
-			break;
-		}
-	}
-
-	if (level[0]) {
-		$('#easy').removeClass('btn-default').addClass('btn-info');
-	} else {
-		$('#easy').removeClass('btn-info').addClass('btn-default');
-	}
-
-	if (level[1]) {
-		$('#med').removeClass('btn-default').addClass('btn-warning');
-	} else {
-		$('#med').removeClass('btn-warning').addClass('btn-default');
-	}
-
-	if (level[2]) {
-		$('#hard').removeClass('btn-default').addClass('btn-danger');
-	} else {
-		$('#hard').removeClass('btn-danger').addClass('btn-default');
-	}
-}
-
-/* Prikaz kategorija */
-
-function Kategorije()
-{
-	$('#window_kategorija').empty();
-	$.ajax(
-	{
-		url: 'get_tlc.php',
-		type: 'GET',
-		dataType: 'json',
-		success: function(json){
-			for(var i in json) {
-				if(json.hasOwnProperty(i) && !isNaN(+i)) {
-					$('#window_kategorija').append('<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1" value="'+i+'" onclick=KatCheck(this)>'+json[i]+'</label>');
-				}
-			}
-		}
-	}
-	);
-}
-
-function KatCheck(b)
-{	
-	if ($(b).is(':checked'))
-	{
-		catlist.push($(b).val());
-	}else{
-		catlist.splice(catlist.indexOf($(b).val()),1);
-	}
-}
-
-function Lobby ()
-{
+function Lobby() {
    webSocket.send("U"+username);
    $("#join").hide();
    $("#buttonmsg").html("<h4>Waiting for other player...</h4>");
 }
 
+
 /* Izvlači iz baze novo pitanje */
 
-function NovoPitanje (json)
-{
+function NovoPitanje (json) {
    TimerStop(timerInterval);
    $('#timer').empty();
    countdownTime=5; // vrijeme trajanja
@@ -187,10 +120,10 @@ function NovoPitanje (json)
 	answerable=true;
 }
 
+
 /* Postavlja tipke s odgovorima */
 
-function pripremiABCD(data)
-{
+function pripremiABCD (data) {
 	tocan_odgovor=data.tocan;
 	var odgovori=[];
 	for(var i in data.odgovori) {
@@ -198,10 +131,8 @@ function pripremiABCD(data)
 			odgovori[i]=data.odgovori[i];
 		}
 	}
-	
 	for (var i in odgovori)
 	{
-		
 		var button=$("<button>",
 		{
 			html: odgovori[i],
@@ -214,10 +145,10 @@ function pripremiABCD(data)
 	}	
 }
 
+
 /* Provjera točnog odgovora kod unosa */
 
-function CheckTekstOdgovora(giveup)
-{
+function CheckTekstOdgovora (giveup) {
    if (!answerable) { return;}
 	if (odgovoreno) {return;}
 	for (var i=0;i<tocni_odgovori.length;i++)
@@ -239,10 +170,10 @@ function CheckTekstOdgovora(giveup)
 	}
 }
 
+
 /* Provjera točnog odgovora kod multiple choice */
 
-function CheckABCDodgovor(ovo)
-{
+function CheckABCDodgovor (ovo) {
    if (!answerable) {return;}
 	TimerStop(timerInterval);
 	$('#timer').empty();
@@ -263,28 +194,30 @@ function CheckABCDodgovor(ovo)
 	}
 }
 
-function ReportOdgovor(tocno)
-{
+
+function ReportOdgovor (tocno) {
    answerable=false;
 	TimerStop(timerInterval);
 	$('#timer').empty();
-   
    webSocket.send(tocno?"T":"N");
 	if (tocno)trenscore+=bodovi_pitanja;
 	$('#trenscore').html(trenscore);
 	$('#total').load('myscore.php');
 }
 
-function NovoPitanjeTimeout(json) {
+
+function NovoPitanjeTimeout (json) {
 	pitanjeTimeout=setTimeout(function()
 	{
 	   NovoPitanje(json)
 	}, 1000);
 }
 
-function TimeoutStop(timeoutVar) {
+
+function TimeoutStop (timeoutVar) {
 	clearTimeout(timeoutVar);
 }
+
 
 function TimerStart() {
 	timerInterval=setInterval(function(){
@@ -299,12 +232,13 @@ function TimerStart() {
 	}, 1000);
 }
 
-function TimerStop(timerVar) {
+
+function TimerStop (timerVar) {
 	clearInterval(timerVar);
 }
 
-function GameOver(stuff)
-{
+
+function GameOver (stuff) {
 	TimerStop(timerInterval);
 	$('#timer').empty();
 	$('#broj_pitanja').hide();
