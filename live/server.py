@@ -93,7 +93,7 @@ class Game():
          self.p1.sendStuff(infoPitanje)
          self.p2.sendStuff(infoPitanje)
          self.odgovoreno=0
-         pitanje=urllib2.urlopen(URL+"/resources/library/get_question.php").read()
+         pitanje=urllib2.urlopen(URL+"/resources/library/get_question.php").read() #pokupi randomno pitanje
          self.p1.sendQuestion(pitanje)
          self.p2.sendQuestion(pitanje)
          self.p1s=1
@@ -140,7 +140,7 @@ class KwizzLive():
       reactor.run()
 
    def getPlayer(self,player):
-      self.players.append([player,False])
+      self.players.append(player)
       print "dodan je player"
       self.findGames()
 
@@ -151,12 +151,8 @@ class KwizzLive():
          self.games.append(Game(par[0],par[1]))
 
    def getIdlePlayers(self):
-      idlePlayers=[]
-      for p in self.players:
-         if (p[1]==False):
-            idlePlayers.append(p[0])
-         if (len(idlePlayers)==2):
-            return idlePlayers
+      if len(self.players)>1:
+         return [self.players.pop(), self.players.pop()]
       return False
 
    def kraj(self, broken=None):
