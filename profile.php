@@ -41,6 +41,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+						<p class="text-center"><a href="suggest_question.php" class="btn btn-default" role="button">Suggest question</a></p>
+						<hr>
 						<?php
 							db_connect();
 
