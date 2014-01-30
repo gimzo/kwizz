@@ -31,5 +31,4 @@ Instalacija
 - pokrenuti live.py (python live.py na unix-like sustavima)
 
 Ostalo
-- Live koristi port 9000 za spajanje s klijentima, potrebno je da bude otvoren od klijenata prema serveru
-- 
+- Live koristi port 9000 za spajanje s klijentima, potrebno je da bude otvoren od klijenata prema serveru 
