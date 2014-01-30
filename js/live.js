@@ -86,6 +86,7 @@ function Lobby() {
 /* Prima sa servera novo pitanje */
 
 function NovoPitanje (json) {
+   $("#drugi_odgovor").html(" ");
    TimerStop(timerInterval);
    $('#timer').empty();
    countdownTime=5; // vrijeme trajanja
