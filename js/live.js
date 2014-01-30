@@ -5,7 +5,7 @@
 var pitanjeTimeout;
 var timerInterval;
 
-var webSocket
+var webSocket;
 
 var answerable; // blokiranje tipki kad istekne vrijeme
 
@@ -79,7 +79,7 @@ function SetGame() {
 function Lobby() {
    webSocket.send("U"+username);
    $("#join").hide();
-   $("#buttonmsg").html("<h4>Waiting for other player...</h4>");
+   $("#buttonmsg").html("<p class='lead text-center'>Waiting for other player...</p>");
 }
 
 
@@ -248,9 +248,9 @@ function GameOver (stuff) {
 	$('#timer').empty();
 	$('#broj_pitanja').hide();
 	$('#drugi_odgovor').hide();
-   endMsg="<h2>Round complete</h2>";
+   endMsg="<p class='lead text-center'>Round complete</p>";
    if (stuff.broken) {
-      endMsg+="<h3>"+stuff.broken+" has left the game</h3>";
+      endMsg+="<p class='lead text-center'>"+stuff.broken+" has left the game</p>";
    }
    TimerStop(timerInterval);
 	$('#timer').empty();
@@ -260,14 +260,14 @@ function GameOver (stuff) {
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
 	if (stuff.s1>stuff.s2) {
-	   endMsg+="<h4>"+stuff.p1+" Won this round!</h4>";
-	   endMsg+="<h5>"+stuff.p1+ " : "+stuff.s1+"</h5><h5>"+stuff.p2+ " : "+stuff.s2+"</h5>";
+	   endMsg+="<p class='lead text-center'>"+stuff.p1+" Won this round!</p>";
+	   endMsg+="<p class='lead text-center'>"+stuff.p1+ " : "+stuff.s1+"</p><p class='lead text-center'>"+stuff.p2+ " : "+stuff.s2+"</p>";
 	}else if (stuff.s2>stuff.s1) {
-	   endMsg+="<h4>"+stuff.p2+" Won this round!</h4>";
-	   endMsg+="<h5>"+stuff.p2+ " : "+stuff.s2+"</h5><h5>"+stuff.p1+ " : "+stuff.s1+"</h4>";
+	   endMsg+="<p class='lead text-center'>"+stuff.p2+" Won this round!</p>";
+	   endMsg+="<p class='lead text-center'>"+stuff.p2+ " : "+stuff.s2+"</p><p class='lead text-center'>"+stuff.p1+ " : "+stuff.s1+"</p>";
 	}else {
-	   endMsg+="<h4>TIED!</h4>";
-	   endMsg+="<h5>"+stuff.p1+ " : "+stuff.s1+"</h5><h5>"+stuff.p2+ " : "+stuff.s2+"</h5>";
+	   endMsg+="<p class='lead text-center'>TIED!</p>";
+	   endMsg+="<p class='lead text-center'>"+stuff.p1+ " : "+stuff.s1+"</p><p class='lead text-center'>"+stuff.p2+ " : "+stuff.s2+"</p>";
 	}
    $("#rezultat").html(endMsg);
    $("#rezultat").fadeIn();
