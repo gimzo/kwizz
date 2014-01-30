@@ -5,7 +5,7 @@
 var pitanjeTimeout;
 var timerInterval;
 
-var webSocket
+var webSocket;
 
 var answerable; // blokiranje tipki kad istekne vrijeme
 
