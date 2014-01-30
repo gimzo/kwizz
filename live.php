@@ -70,7 +70,7 @@
 								<button class="btn btn-default" type="button" id="neznam" onclick="CheckTekstOdgovora(true)">I don't know!</button>
 							</span>
 						</div>
-						<div class="hr"></div>
+						<hr>
 						<p class="lead text-center" id="drugi_odgovor"></p>
 					</div>
 				</div>
