@@ -43,7 +43,7 @@ function error() {
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
 	$("#join").hide();
-   $("#buttonmsg").html("<h4>Connection error</h4><h5>Real time game may be offline</h5>");
+   $("#buttonmsg").html("<p class='lead text-center'>Connection error</p><p class='lead text-center'>Real time game may be offline</p>");
 }
 
 
