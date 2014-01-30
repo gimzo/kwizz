@@ -42,7 +42,7 @@
 						<hr>
 						<p class="lead text-center">LivePlay</p>
 						<p class="lead text-center" id="broj_pitanja"></p>
-						<p class="lead text-center" id="drugi_odgovor"></p>
+						
 						<hr>
 
 						<!-- Sucelje -->
@@ -70,6 +70,7 @@
 								<button class="btn btn-default" type="button" id="neznam" onclick="CheckTekstOdgovora(true)">I don't know!</button>
 							</span>
 						</div>
+						<p class="lead text-center" id="drugi_odgovor"></p>
 					</div>
 				</div>
 			</div>
