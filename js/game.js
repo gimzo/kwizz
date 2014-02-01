@@ -32,6 +32,7 @@ function showMenu() {
 }
 
 function startGame() {
+	$('#categories-section').hide();
 	if (gameMode == 'RM') {
 		$('#status-window').html('<p class="lead text-center font-lg">'+categoryName+'</p>');
 	} else if (gameMode == 'TC') {

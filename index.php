@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<title>Kwizz</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style-landing.css">
@@ -38,7 +38,7 @@
 						<div class="jumbotron">
 							<h1>Howdy, stranger!</h1><br>
 							<p class="text-center">Register now to have fun playing a bunch of different quizzes with a lot of categories to choose from. Sign in if you are already a part of the community.</p><br>
-							<p class="text-center"><button id="register-btn" type="button" class="btn btn-primary blue btn-lg">Register now!</button>&nbsp; or &nbsp;<button id="sign-in-btn" type="button" class="btn btn-primary blue btn-lg" role="button">Sign in</button></p>
+							<p class="text-center"><button id="register-btn" type="button" class="btn btn-primary blue btn-lg">Register now!</button><span class="visible-xs"><br></span>&nbsp;&nbsp;or&nbsp;&nbsp;<span class="visible-xs"><br></span><button id="sign-in-btn" type="button" class="btn btn-primary blue btn-lg" role="button">Sign in</button></p>
 						</div>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 						<div class="row">
 							<div class="col-sm-12"><h3 class="text-center"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Registration</h3><br><br></div>
 							<div class="row">
-								<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+								<div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 									<form id="register-form" role="form">
 										<div class="form-group">
 											<label>Desired nickname</label>
@@ -324,7 +324,7 @@
 						<div class="row">
 							<div class="col-sm-12"><h3 class="text-center"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Sign in</h3><br><br></div>
 							<div class="row">
-								<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+								<div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 									<form id="sign-in-form" role="form">
 										<div class="form-group">
 											<label>Nickname</label>

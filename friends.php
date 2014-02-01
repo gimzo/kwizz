@@ -12,7 +12,7 @@
 <html>
 	<head>
 		<title>Kwizz | Friends</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -62,6 +62,7 @@
 						?>
 					</div>
 					<div class="col-sm-8 col-md-8">
+						<span class="visible-xs"><hr></span>
 						<?php
 							db_connect();
 							if (!empty($_GET['nick'])) {

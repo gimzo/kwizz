@@ -12,7 +12,7 @@
 <html>
 	<head>
 		<title>Kwizz | Profile</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 		<meta charset="UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -60,7 +60,7 @@
 								$result=mysqli_query($mysqli, "SELECT * FROM lista_prijatelja WHERE id_vlasnik='$_SESSION[id]' AND id_prijatelj='$id'");
 								$data = mysqli_fetch_array($result);
 								if ($data) {
-									echo '<p class="text-center"><a href="profile.php?remove='.$id.'&nickname='.$_GET['nickname'].'" class="btn btn-default" role="button">Remove from friend list</a>&nbsp;&nbsp;<a href="messages.php?conversation='.$nick.'" class="btn btn-default" role="button">Send Message</a></p><hr>';
+									echo '<p class="text-center"><a href="profile.php?remove='.$id.'&nickname='.$_GET['nickname'].'" class="btn btn-default" role="button">Remove from friend list</a>&nbsp;&nbsp;<span class="visible-xs"><br></span><a href="messages.php?conversation='.$nick.'" class="btn btn-default" role="button">Send Message</a></p><hr>';
 								} else {
 									echo '<p class="text-center"><a href="profile.php?add='.$id.'&nickname='.$_GET['nickname'].'" class="btn btn-default" role="button">Add to friend list</a></p><hr>';
 								}

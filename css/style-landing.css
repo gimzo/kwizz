@@ -7,7 +7,14 @@ html {
 
 body {
 	color: rgb(255, 255, 255);
-	margin: 0 0 350px;
+	margin: 0 0 706px;
+	background-color: rgb(195, 92, 72);
+}
+
+@media (min-width: 768px) {
+	body {
+		margin: 0 0 350px;
+	}
 }
 
 #logo {
@@ -90,12 +97,18 @@ footer {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 350px;
+	height: 706px;
 	width: 100%;
 	color: white;
 	background-color: rgb(80, 80, 80);
 	padding: 20px 0; /* visina footera */
 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15) inset;
+}
+
+@media (min-width: 768px) {
+	footer {
+		height: 350px;
+	}
 }
 
 footer a, footer a:hover {
