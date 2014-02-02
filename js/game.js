@@ -65,7 +65,8 @@ function newQuestion() {
 		success: function( json ) {
 			$('#game-window').empty();
 			$('#game-window').append('<button type="button" class="btn btn-default" onclick="endGame()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Main Menu</button>');
-			$('#game-window').append('<p class="lead text-center"><br>'+json.tekst+' | '+json.bodovi+' points</p><br>');
+			if (gameMode == 'RM') $('#game-window').append('<p class="lead text-center"><br>'+json.tekst+'</p><br>');
+			else $('#game-window').append('<p class="lead text-center"><br>'+json.tekst+' | '+json.bodovi+' points</p><br>');
 			answered = false;
 			questionId = json.id;
 			questionPoints = parseInt(json.bodovi);
