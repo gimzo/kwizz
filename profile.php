@@ -43,7 +43,7 @@
 					<div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
 					<?php
 					if ((!isset($_GET['nickname'])) || (strtolower($_GET['nickname']) == strtolower($_SESSION['user']))) {
-						echo '<p class="text-center"><a href="suggest_question.php" class="btn btn-default" role="button">Suggest question</a></p>';
+						echo '<p class="text-center"><a href="suggest_question.php" class="btn btn-default" role="button">Submit question</a></p>';
 						echo '<hr>';
 					}
 							db_connect();
