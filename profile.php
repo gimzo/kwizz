@@ -30,7 +30,7 @@
 							if ((!isset($_GET['nickname'])) || (strtolower($_GET['nickname']) == strtolower($_SESSION['user']))) {
 								echo '<p class="lead text-center font-lg">Get to know your stats:</p>';
 							} else {
-								echo '<p class="lead text-center font-lg">Stats for your friend:</p>';
+								echo '<p class="lead text-center font-lg">Stats for '.$_GET['nickname'].':</p>';
 							}
 						?>
 					</div>
