@@ -48,7 +48,7 @@
 									if ($data['id_korisnik'] == $_SESSION['id']) {
 										echo '<tr style="background-color: rgb(207, 109, 90);"><td>'.$rank.'</td><td>'.$data['nadimak_korisnik'].'</td><td>'.$data['ime'].'</td><td>'.$data['rezultat'].'</td><td>'.strtoupper($data['drzava_korisnik']).'</td></tr>';
 									} else {
-										echo '<tr><td>'.$rank.'</td><td>'.$data['nadimak_korisnik'].'</td><td>'.$data['ime'].'</td><td>'.$data['rezultat'].'</td><td>'.strtoupper($data['drzava_korisnik']).'</td></tr>';
+										echo '<tr><td>'.$rank.'</td><td><a href="profile.php?nickname='.$data['nadimak_korisnik'].'">'.$data['nadimak_korisnik'].'</a></td><td>'.$data['ime'].'</td><td>'.$data['rezultat'].'</td><td>'.strtoupper($data['drzava_korisnik']).'</td></tr>';
 									}
 									$rank++;
 								}
