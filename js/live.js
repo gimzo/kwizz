@@ -27,6 +27,7 @@ function receive (e) {
          GameOver(stuff);
          break;
       case("broj"):
+         $("#broj_pitanja").css('visibility', 'hidden');
          $("#broj_pitanja").html("Question " + stuff.sad+ " / " + stuff.total);
          break;
       default:
@@ -35,6 +36,9 @@ function receive (e) {
    }
 }
 
+function closing() {
+   error();
+}
 
 function error() {
    $('#endgame').hide();
@@ -43,15 +47,25 @@ function error() {
 	$('#odgovorabcd').hide();
 	$('#odgovortext').hide();
 	$("#join").hide();
-   $("#buttonmsg").html("<p class='lead text-center'>Connection error</p><p class='lead text-center'>Real time game may be offline</p>");
+	$("#statusMsg").fadeIn();
+   $("#statusMsg").html("<p class='lead text-center'>Connection error</p><p class='lead text-center'>Live game may be offline</p>");
 }
 
 
 function connect() {
+   $('#endgame').hide();
+	$('#kategorija').hide();
+	$('#pitanje').hide();
+	$('#odgovorabcd').hide();
+	$('#odgovortext').hide();
+	$("#join").hide();
+	$("#statusMsg").html("<p class='lead text-center'>Please wait...</p><p class='lead text-center'>Connecting to Live game</p>");
+	$("#statusMsg").fadeIn();
    webSocket=new WebSocket("ws://"+window.location.hostname+":9000");
    webSocket.onmessage=receive;
    webSocket.onerror=error;
    webSocket.onopen=SetGame;
+   webSocket.onclose=closing;
 }
 
 
@@ -64,9 +78,11 @@ function SetGame() {
 	trenscore=0;
 	tocniOdgovori=0;
 	brojPitanja=0;
+	$("#statusMsg").hide();
+	$("#startgame").show();
+	$("#join").fadeIn();
 	$("#startgame").fadeIn();
 	$("#trenscore").html('0');
-	$("#total").load('myscore.php');
 	$('#endgame').hide();
 	$('#kategorija').hide();
 	$('#pitanje').hide();
@@ -79,13 +95,15 @@ function SetGame() {
 function Lobby() {
    webSocket.send("U"+username);
    $("#join").hide();
-   $("#buttonmsg").html("<p class='lead text-center'>Waiting for other player...</p>");
+   $("#statusMsg").fadeIn();
+   $("#statusMsg").html("<p class='lead text-center'>Waiting for other player...</p>");
 }
 
 
 /* Prima sa servera novo pitanje */
 
 function NovoPitanje (json) {
+   $("#broj_pitanja").css('visibility', 'visible');
    $("#drugi_odgovor").html(" ");
    TimerStop(timerInterval);
    $('#timer').empty();
@@ -213,6 +231,7 @@ function ReportOdgovor (tocno) {
 
 
 function NovoPitanjeTimeout (json) {
+   $("#statusMsg").hide();
 	pitanjeTimeout=setTimeout(function()
 	{
 	   NovoPitanje(json)

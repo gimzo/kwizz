@@ -54,7 +54,8 @@
 							<div>
 							</div>
 							<div class="hr"></div>
-							<div id="buttonmsg">
+							<div id="statusMsg"></div>
+							<div id="mainButton">
 								<br><br><button id="join" class="btn btn-success" onclick="Lobby()">Join Game</button>
 							</div>
 						</div>
