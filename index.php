@@ -393,11 +393,19 @@
 			$("#sign-in-section").hide();
 			$("#register-btn").click(function() {
 				$(this).toggleClass("hovered");
-				$("#register-section").slideToggle();
+				$("#register-section").slideToggle(function () {
+					if ($('#register-section').is(':visible')) {
+						$('html,body').animate({ scrollTop: $('#register-section').offset().top }, 'slow');
+					}
+				});
 			});
 			$("#sign-in-btn").click(function() {
 				$(this).toggleClass("hovered");
-				$("#sign-in-section").slideToggle();
+				$("#sign-in-section").slideToggle(function () {
+					if ($('#sign-in-section').is(':visible')) {
+						$('html,body').animate({ scrollTop: $('#sign-in-section').offset().top }, 'slow');
+					}
+				});
 			});
 
 			// Registration
